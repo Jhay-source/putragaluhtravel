@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Syarat &amp; Ketentuan | Putra Galuh Travel</title>
+    <meta name="description" content="Syarat dan ketentuan layanan travel door to door Putra Galuh Travel. Informasi pemesanan, pembatalan, refund, dan tanggung jawab penumpang.">
+    <meta name="keywords" content="syarat ketentuan travel, syarat travel majalengka, kebijakan putra galuh travel">
+    <meta name="author" content="Putra Galuh Travel">
+    <meta name="robots" content="index, follow">
+
+    <!-- ============ FAVICON ============ -->
+    <link rel="icon" type="image/jpeg" href="icon.jpg">
+    <link rel="shortcut icon" type="image/jpeg" href="icon.jpg">
+    <link rel="apple-touch-icon" href="icon.jpg">
+    <meta name="theme-color" content="#0F1F3D">
+
+    <!-- ============ OPEN GRAPH ============ -->
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Putra Galuh Travel">
+    <meta property="og:title" content="Syarat & Ketentuan — Putra Galuh Travel">
+    <meta property="og:description" content="Syarat dan ketentuan layanan travel door to door Putra Galuh Travel.">
+    <meta property="og:image" content="og-image.jpg">
+    <meta property="og:url" content="https://putragaluhtravel.com/syarat-ketentuan.html">
+    <meta property="og:locale" content="id_ID">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #FFFFFF;
+            --bg-alt: #F5F8FC;
+            --bg-dark: #0F1F3D;
+
+            --ink: #0F1F3D;
+            --ink-soft: #344466;
+            --muted: #64748B;
+            --muted-2: #94A3B8;
+
+            --line: #E2E8F0;
+            --line-dark: rgba(255, 255, 255, 0.10);
+
+            --blue: #2563EB;
+            --blue-hover: #1D4ED8;
+            --blue-dark: #1E40AF;
+            --blue-light: #60A5FA;
+            --blue-soft: #EFF6FF;
+            --blue-line: #BFDBFE;
+
+            --green: #16A34A;
+
+            --cream: #FFFFFF;
+            --cream-muted: rgba(255, 255, 255, 0.78);
+            --cream-muted-2: rgba(255, 255, 255, 0.5);
+
+            --ff-head: 'Fraunces', Georgia, serif;
+            --ff-body: 'Manrope', system-ui, -apple-system, sans-serif;
+
+            --radius: 12px;
+            --radius-lg: 18px;
+            --trans: all 0.25s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--ff-body);
+            background: var(--bg);
+            color: var(--ink);
+            line-height: 1.65;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body.drawer-open { overflow: hidden; }
+
+        a { text-decoration: none; color: inherit; }
+        img { max-width: 100%; height: auto; display: block; }
+        ul { list-style: none; }
+
+        .container { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+
+        ::selection { background: var(--blue); color: #FFFFFF; }
+
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: var(--bg-alt); }
+        ::-webkit-scrollbar-thumb { background: #C7D2E0; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--blue); }
+
+        /* ============ HEADER ============ */
+        .header {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(15, 31, 61, 0.96);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(37, 99, 235, 0.3);
+            padding: 18px 0;
+            transition: var(--trans);
+        }
+
+        .header.scrolled {
+            background: rgba(255, 255, 255, 0.96);
+            border-bottom-color: var(--line);
+            padding: 11px 0;
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo { display: flex; align-items: center; z-index: 1002; }
+        .logo img { height: 44px; width: auto; transition: var(--trans); }
+        .logo:hover img { opacity: 0.85; }
+
+        .nav-menu { display: flex; align-items: center; gap: 24px; }
+
+        .nav-menu li a {
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.85);
+            transition: var(--trans);
+            position: relative;
+        }
+
+        .nav-menu li a:hover,
+        .nav-menu li a.active { color: var(--blue-light); }
+
+        .nav-menu li a.active::after {
+            content: '';
+            position: absolute;
+            left: 0; bottom: -6px;
+            width: 100%; height: 2px;
+            background: var(--blue);
+            border-radius: 2px;
+        }
+
+        .nav-menu li a.nav-cta {
+            background: var(--blue);
+            color: #FFFFFF;
+            padding: 10px 22px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            transition: var(--trans);
+        }
+
+        .nav-menu li a.nav-cta:hover { background: var(--blue-light); }
+        .nav-menu li a.nav-cta.active::after { display: none; }
+
+        .header.scrolled .nav-menu li a { color: var(--ink-soft); }
+        .header.scrolled .nav-menu li a:hover,
+        .header.scrolled .nav-menu li a.active { color: var(--blue); }
+        .header.scrolled .nav-menu li a.active::after { background: var(--blue); }
+        .header.scrolled .nav-menu li a.nav-cta { background: var(--blue); color: #FFFFFF; }
+        .header.scrolled .nav-menu li a.nav-cta:hover { background: var(--blue-hover); }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            width: 44px;
+            height: 44px;
+            background: transparent;
+            border: 1px solid rgba(96, 165, 250, 0.5);
+            border-radius: 10px;
+            cursor: pointer;
+            padding: 0 11px;
+            z-index: 1002;
+            transition: var(--trans);
+        }
+
+        .hamburger span {
+            display: block;
+            height: 1.8px;
+            width: 100%;
+            background: var(--blue-light);
+            border-radius: 2px;
+            transition: var(--trans);
+        }
+
+        .header.scrolled .hamburger { border-color: var(--line); }
+        .header.scrolled .hamburger span { background: var(--blue); }
+
+        .hamburger.active span:nth-child(1) { transform: translateY(6.8px) rotate(45deg); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: translateY(-6.8px) rotate(-45deg); }
+
+        /* ============ DRAWER ============ */
+        .drawer-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 31, 61, 0.6);
+            backdrop-filter: blur(2px);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            z-index: 1150;
+        }
+        .drawer-overlay.open { opacity: 1; visibility: visible; }
+
+        .mobile-drawer {
+            position: fixed;
+            top: 0; left: 0;
+            width: 78vw;
+            max-width: 340px;
+            height: 100vh;
+            height: 100dvh;
+            background: var(--bg);
+            border-right: 1px solid var(--line);
+            transform: translateX(-100%);
+            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1200;
+            display: flex;
+            flex-direction: column;
+            will-change: transform;
+        }
+        .mobile-drawer.open { transform: translateX(0); }
+
+        .drawer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 20px;
+            border-bottom: 1px solid var(--line);
+            flex-shrink: 0;
+        }
+
+        .drawer-logo img { height: 38px; width: auto; }
+
+        .drawer-close {
+            width: 40px;
+            height: 40px;
+            background: transparent;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            color: var(--ink);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--trans);
+            flex-shrink: 0;
+        }
+
+        .drawer-close:hover { border-color: var(--blue); color: var(--blue); }
+        .drawer-close svg { width: 16px; height: 16px; stroke: currentColor; stroke-width: 2; }
+
+        .drawer-body { flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+
+        .drawer-menu { display: flex; flex-direction: column; }
+        .drawer-menu > li { border-bottom: 1px solid var(--line); }
+
+        .drawer-menu > li > a {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 22px;
+            color: var(--ink);
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: var(--trans);
+            min-height: 50px;
+        }
+
+        .drawer-menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 22px;
+            color: var(--ink);
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            user-select: none;
+            min-height: 50px;
+            transition: var(--trans);
+        }
+
+        .drawer-menu > li > a:hover,
+        .drawer-menu-item:hover,
+        .drawer-menu-item.open { color: var(--blue); background: var(--blue-soft); }
+
+        .drawer-menu-item .chevron {
+            width: 14px;
+            height: 14px;
+            stroke: currentColor;
+            stroke-width: 2;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .drawer-menu-item.open .chevron { transform: rotate(180deg); }
+
+        .drawer-submenu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease;
+            background: var(--bg-alt);
+        }
+
+        .drawer-submenu.open { max-height: 600px; }
+
+        .drawer-submenu li { border-bottom: 1px solid rgba(0, 0, 0, 0.04); }
+        .drawer-submenu li:last-child { border-bottom: none; }
+
+        .drawer-submenu li a,
+        .drawer-submenu li .submenu-static {
+            display: block;
+            padding: 11px 22px 11px 40px;
+            color: var(--muted);
+            font-size: 0.87rem;
+            transition: var(--trans);
+        }
+
+        .drawer-submenu li a:hover { color: var(--blue); padding-left: 44px; }
+        .drawer-submenu li .submenu-static { cursor: default; }
+
+        .drawer-footer {
+            border-top: 1px solid var(--line);
+            padding: 16px 20px 20px;
+            flex-shrink: 0;
+        }
+
+        .drawer-lang {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0 14px;
+            color: var(--muted);
+            font-size: 0.86rem;
+            border-bottom: 1px solid var(--line);
+            margin-bottom: 14px;
+        }
+
+        .drawer-lang .lang-left { display: flex; align-items: center; gap: 8px; }
+
+        .drawer-lang .lang-left svg,
+        .drawer-lang .lang-chevron {
+            width: 15px;
+            height: 15px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 1.8;
+        }
+
+        .drawer-contact-btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            width: 100%;
+            padding: 13px 20px;
+            border: none;
+            border-radius: 10px;
+            color: #FFFFFF;
+            background: var(--blue);
+            font-weight: 600;
+            font-size: 0.88rem;
+            transition: var(--trans);
+            font-family: var(--ff-body);
+            cursor: pointer;
+        }
+
+        .drawer-contact-btn:hover { background: var(--blue-hover); }
+
+        .drawer-contact-btn svg {
+            width: 14px;
+            height: 14px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2.2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* ============ PAGE HEADER ============ */
+        .page-header {
+            background: var(--bg-dark);
+            color: var(--cream);
+            padding: 138px 0 64px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(180deg, rgba(15, 31, 61, 0.7) 0%, rgba(15, 31, 61, 0.96) 100%),
+                url('pemandangan.jpg') center/cover no-repeat;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .page-header .container { position: relative; z-index: 2; }
+
+        .breadcrumb {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.8rem;
+            color: var(--cream-muted-2);
+            margin-bottom: 18px;
+            flex-wrap: wrap;
+        }
+
+        .breadcrumb a { color: var(--blue-light); transition: var(--trans); }
+        .breadcrumb a:hover { color: var(--cream); }
+        .breadcrumb span { color: var(--cream-muted-2); }
+        .breadcrumb .sep { color: var(--cream-muted-2); }
+
+        .page-header h1 {
+            font-family: var(--ff-head);
+            font-size: 2.8rem;
+            font-weight: 600;
+            line-height: 1.15;
+            letter-spacing: -1px;
+            color: var(--cream);
+            margin-bottom: 14px;
+        }
+
+        .page-header p {
+            color: var(--cream-muted);
+            font-size: 1rem;
+            max-width: 620px;
+            line-height: 1.7;
+        }
+
+        .page-header .updated {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 20px;
+            padding: 8px 14px;
+            background: rgba(37, 99, 235, 0.2);
+            border: 1px solid rgba(96, 165, 250, 0.4);
+            border-radius: 8px;
+            font-size: 0.78rem;
+            color: var(--blue-light);
+            font-weight: 600;
+        }
+
+        .page-header .updated::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--blue-light);
+        }
+
+        /* ============ CONTENT LAYOUT ============ */
+        .legal {
+            padding: 72px 0 96px;
+            background: var(--bg);
+        }
+
+        .legal-layout {
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            gap: 56px;
+            align-items: start;
+        }
+
+        .toc {
+            position: sticky;
+            top: 100px;
+            padding: 22px;
+            background: var(--bg-alt);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+        }
+
+        .toc h3 {
+            font-family: var(--ff-head);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 14px;
+            letter-spacing: -0.2px;
+        }
+
+        .toc ul {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .toc ul li a {
+            display: block;
+            padding: 7px 10px;
+            font-size: 0.82rem;
+            color: var(--muted);
+            border-radius: 6px;
+            border-left: 2px solid transparent;
+            transition: var(--trans);
+            line-height: 1.4;
+        }
+
+        .toc ul li a:hover,
+        .toc ul li a.active {
+            color: var(--blue);
+            background: var(--blue-soft);
+            border-left-color: var(--blue);
+        }
+
+        .legal-content {
+            max-width: 720px;
+        }
+
+        .legal-intro {
+            padding: 22px 26px;
+            background: var(--blue-soft);
+            border: 1px solid var(--blue-line);
+            border-left: 4px solid var(--blue);
+            border-radius: var(--radius);
+            margin-bottom: 44px;
+            font-size: 0.94rem;
+            color: var(--ink-soft);
+            line-height: 1.75;
+        }
+
+        .legal-intro strong { color: var(--ink); font-weight: 600; }
+
+        .legal-section {
+            margin-bottom: 44px;
+            scroll-margin-top: 100px;
+        }
+
+        .legal-section .section-num {
+            display: inline-block;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--blue);
+            margin-bottom: 8px;
+        }
+
+        .legal-section h2 {
+            font-family: var(--ff-head);
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 16px;
+            letter-spacing: -0.4px;
+            line-height: 1.25;
+        }
+
+        .legal-section p {
+            color: var(--ink-soft);
+            font-size: 0.94rem;
+            line-height: 1.85;
+            margin-bottom: 14px;
+        }
+
+        .legal-section p:last-child { margin-bottom: 0; }
+
+        .legal-section ol,
+        .legal-section ul {
+            margin: 4px 0 14px 0;
+            padding-left: 20px;
+            color: var(--ink-soft);
+            font-size: 0.94rem;
+            line-height: 1.8;
+        }
+
+        .legal-section ol { list-style: decimal; }
+        .legal-section ul { list-style: disc; }
+
+        .legal-section li { margin-bottom: 8px; padding-left: 4px; }
+        .legal-section li::marker { color: var(--blue); font-weight: 600; }
+        .legal-section li:last-child { margin-bottom: 0; }
+
+        .legal-section li strong { color: var(--ink); font-weight: 600; }
+
+        .legal-note {
+            padding: 16px 20px;
+            background: #FEF9C3;
+            border: 1px solid #FDE68A;
+            border-left: 4px solid #EAB308;
+            border-radius: 8px;
+            margin: 16px 0;
+            font-size: 0.9rem;
+            color: #713F12;
+            line-height: 1.75;
+        }
+
+        .legal-note strong { color: #422006; }
+
+        .legal-contact {
+            margin-top: 56px;
+            padding: 30px 28px;
+            background: var(--bg-dark);
+            border-radius: var(--radius-lg);
+            color: var(--cream);
+        }
+
+        .legal-contact h3 {
+            font-family: var(--ff-head);
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--cream);
+            margin-bottom: 8px;
+            letter-spacing: -0.3px;
+        }
+
+        .legal-contact p {
+            color: var(--cream-muted);
+            font-size: 0.92rem;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .legal-contact .contact-lines {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 22px;
+        }
+
+        .legal-contact .contact-lines span {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: var(--cream-muted);
+        }
+
+        .legal-contact .contact-lines span::before {
+            content: '';
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--blue-light);
+            flex-shrink: 0;
+        }
+
+        .legal-contact a.btn-blue {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 13px 26px;
+            background: var(--blue);
+            color: #FFFFFF;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.88rem;
+            transition: var(--trans);
+        }
+
+        .legal-contact a.btn-blue:hover { background: var(--blue-hover); }
+
+        /* ============ FOOTER (versi ringkas seperti index.html) ============ */
+        .footer {
+            background: var(--bg-dark);
+            color: var(--cream-muted);
+            padding: 34px 0 26px;
+            border-top: 1px solid rgba(37, 99, 235, 0.2);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            font-size: 0.84rem;
+            color: var(--cream-muted-2);
+        }
+
+        /* ============ WHATSAPP FLOAT ============ */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 22px;
+            right: 22px;
+            z-index: 999;
+            width: 56px;
+            height: 56px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 24px rgba(37, 211, 102, 0.35);
+            transition: var(--trans);
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.08);
+            box-shadow: 0 12px 32px rgba(37, 211, 102, 0.5);
+        }
+
+        .whatsapp-float svg { width: 28px; height: 28px; fill: #fff; }
+
+        /* ============ RESPONSIVE ============ */
+        @media (max-width: 1024px) {
+            .nav-menu { gap: 20px; }
+            .legal-layout { grid-template-columns: 220px 1fr; gap: 40px; }
+        }
+
+        @media (max-width: 900px) {
+            .hamburger { display: flex; }
+            .nav-menu { display: none; }
+
+            .page-header { padding: 118px 0 50px; }
+            .page-header h1 { font-size: 2.1rem; }
+
+            .legal { padding: 52px 0 72px; }
+            .legal-layout { grid-template-columns: 1fr; gap: 32px; }
+
+            .toc {
+                position: static;
+                padding: 18px;
+            }
+
+            .toc ul {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 4px;
+            }
+        }
+
+        @media (min-width: 901px) {
+            .mobile-drawer,
+            .drawer-overlay { display: none !important; }
+        }
+
+        @media (max-width: 560px) {
+            .container { padding: 0 18px; }
+            .logo img { height: 38px; }
+            .hamburger { width: 40px; height: 40px; padding: 0 10px; }
+            .mobile-drawer { width: 82vw; max-width: 320px; }
+
+            .page-header { padding: 108px 0 44px; }
+            .page-header h1 { font-size: 1.7rem; letter-spacing: -0.5px; }
+            .page-header p { font-size: 0.9rem; }
+
+            .legal { padding: 44px 0 60px; }
+            .legal-intro { padding: 18px 20px; font-size: 0.9rem; }
+            .legal-section h2 { font-size: 1.25rem; }
+            .legal-section p,
+            .legal-section ol,
+            .legal-section ul { font-size: 0.9rem; }
+
+            .toc ul { grid-template-columns: 1fr; }
+            .legal-contact { padding: 24px 22px; }
+            .legal-contact h3 { font-size: 1.15rem; }
+
+            .footer { padding: 30px 0 22px; }
+
+            .whatsapp-float { width: 52px; height: 52px; bottom: 16px; right: 16px; }
+            .whatsapp-float svg { width: 26px; height: 26px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============ HEADER ============ -->
+    <header class="header" id="header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="icon.jpg" alt="Putra Galuh Travel">
+            </a>
+            <nav>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html">Beranda</a></li>
+                    <li><a href="armada.html">Armada</a></li>
+                    <li><a href="layanan.html">Layanan</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="syarat-ketentuan.html" class="active">Syarat &amp; Ketentuan</a></li>
+                    <li><a href="booking.html" class="nav-cta">Booking</a></li>
+                </ul>
+            </nav>
+            <button class="hamburger" id="hamburger" aria-label="Buka menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ============ DRAWER ============ -->
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+
+    <aside class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
+        <div class="drawer-header">
+            <a href="index.html" class="drawer-logo">
+                <img src="icon.jpg" alt="Putra Galuh Travel">
+            </a>
+            <button class="drawer-close" id="drawerClose" aria-label="Tutup menu">
+                <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+        </div>
+
+        <div class="drawer-body">
+            <ul class="drawer-menu">
+                <li><a href="index.html">Beranda</a></li>
+
+                <li>
+                    <div class="drawer-menu-item" data-submenu="submenu-tentang">
+                        <span>Tentang Kami</span>
+                        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                    </div>
+                    <ul class="drawer-submenu" id="submenu-tentang">
+                        <li><a href="index.html#tentang">Profil</a></li>
+                        <li><a href="index.html#testimoni">Testimoni</a></li>
+                        <li><a href="index.html#faq">FAQ</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <div class="drawer-menu-item" data-submenu="submenu-layanan">
+                        <span>Layanan</span>
+                        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                    </div>
+                    <ul class="drawer-submenu" id="submenu-layanan">
+                        <li><a href="layanan.html#travel-reguler">Travel Reguler</a></li>
+                        <li><a href="layanan.html#carter">Carter Mobil + Sopir</a></li>
+                        <li><a href="layanan.html#bandara">Antar Jemput Bandara</a></li>
+                        <li><a href="layanan.html#pariwisata">Pariwisata</a></li>
+                        <li><a href="layanan.html#ziarah">Ziarah</a></li>
+                        <li><a href="layanan.html#paket">Antar Paket</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="armada.html">Armada Kami</a></li>
+                <li><a href="index.html#rute">Rute Perjalanan</a></li>
+                <li><a href="booking.html">Pesan Tiket</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="index.html#kontak">Kontak</a></li>
+                <li><a href="syarat-ketentuan.html">Syarat &amp; Ketentuan</a></li>
+            </ul>
+        </div>
+
+        <div class="drawer-footer">
+            <div class="drawer-lang">
+                <span class="lang-left">
+                    <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="9"/>
+                        <line x1="3" y1="12" x2="21" y2="12"/>
+                        <path d="M12 3a15 15 0 0 1 4 9 15 15 0 0 1-4 9 15 15 0 0 1-4-9 15 15 0 0 1 4-9z"/>
+                    </svg>
+                    Indonesia
+                </span>
+                <svg class="lang-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+
+            <a href="https://wa.me/6283141106274?text=Halo%20Putra%20Galuh%20Travel%2C%20saya%20ingin%20bertanya."
+               target="_blank" rel="noopener" class="drawer-contact-btn">
+                Hubungi Kami
+                <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="7" y1="17" x2="17" y2="7"/>
+                    <polyline points="7 7 17 7 17 17"/>
+                </svg>
+            </a>
+        </div>
+    </aside>
+
+    <!-- ============ PAGE HEADER ============ -->
+    <section class="page-header">
+        <div class="container">
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+                <a href="index.html">Beranda</a>
+                <span class="sep">/</span>
+                <span>Syarat &amp; Ketentuan</span>
+            </nav>
+            <h1>Syarat &amp; Ketentuan Layanan</h1>
+            <p>Mohon baca dengan saksama sebelum memesan. Dengan melakukan pemesanan, Anda dianggap telah menyetujui seluruh ketentuan di halaman ini.</p>
+            <span class="updated">Terakhir diperbarui: 5 Oktober 2026</span>
+        </div>
+    </section>
+
+    <!-- ============ LEGAL CONTENT ============ -->
+    <section class="legal">
+        <div class="container">
+            <div class="legal-layout">
+
+                <aside class="toc" aria-label="Daftar isi">
+                    <h3>Daftar Isi</h3>
+                    <ul>
+                        <li><a href="#pendahuluan" class="active">1. Pendahuluan</a></li>
+                        <li><a href="#definisi">2. Definisi</a></li>
+                        <li><a href="#pemesanan">3. Pemesanan</a></li>
+                        <li><a href="#pembayaran">4. Pembayaran &amp; Tarif</a></li>
+                        <li><a href="#pembatalan">5. Pembatalan &amp; Refund</a></li>
+                        <li><a href="#jadwal">6. Jadwal &amp; Keterlambatan</a></li>
+                        <li><a href="#penumpang">7. Hak &amp; Kewajiban Penumpang</a></li>
+                        <li><a href="#bagasi">8. Bagasi &amp; Barang Bawaan</a></li>
+                        <li><a href="#tanggungjawab">9. Batas Tanggung Jawab</a></li>
+                        <li><a href="#force-majeure">10. Force Majeure</a></li>
+                        <li><a href="#privasi">11. Perlindungan Data</a></li>
+                        <li><a href="#hukum">12. Hukum yang Berlaku</a></li>
+                        <li><a href="#perubahan">13. Perubahan Ketentuan</a></li>
+                    </ul>
+                </aside>
+
+                <article class="legal-content">
+
+                    <div class="legal-intro">
+                        <strong>Ringkasan singkat:</strong> Kami berkomitmen memberikan layanan travel door to door yang aman, tepat waktu, dan nyaman. Syarat &amp; Ketentuan ini mengatur hubungan antara Anda sebagai penumpang dengan <strong>Putra Galuh Travel</strong> sebagai penyedia jasa. Dengan memesan, Anda menyetujui ketentuan berikut.
+                    </div>
+
+                    <section class="legal-section" id="pendahuluan">
+                        <span class="section-num">Pasal 01</span>
+                        <h2>Pendahuluan</h2>
+                        <p>
+                            Syarat &amp; Ketentuan ini berlaku untuk seluruh layanan yang disediakan oleh Putra Galuh Travel, termasuk namun tidak terbatas pada layanan travel reguler door to door, carter kendaraan, antar jemput bandara, pariwisata, ziarah, dan pengiriman paket.
+                        </p>
+                        <p>
+                            Dengan melakukan pemesanan melalui WhatsApp, telepon, website, atau kanal resmi lainnya, penumpang dianggap telah membaca, memahami, dan menyetujui seluruh ketentuan yang tercantum dalam dokumen ini.
+                        </p>
+                    </section>
+
+                    <section class="legal-section" id="definisi">
+                        <span class="section-num">Pasal 02</span>
+                        <h2>Definisi</h2>
+                        <ul>
+                            <li><strong>Perusahaan</strong> adalah Putra Galuh Travel, penyedia jasa transportasi yang berkedudukan di Kabupaten Majalengka, Jawa Barat.</li>
+                            <li><strong>Penumpang</strong> adalah individu atau kelompok yang menggunakan layanan Perusahaan.</li>
+                            <li><strong>Pemesanan</strong> adalah proses konfirmasi penggunaan layanan yang dilakukan penumpang melalui kanal resmi.</li>
+                            <li><strong>Door to door</strong> adalah sistem penjemputan di alamat asal penumpang dan pengantaran sampai alamat tujuan.</li>
+                            <li><strong>Force majeure</strong> adalah keadaan di luar kendali Perusahaan seperti bencana alam, kerusuhan, penutupan jalan, atau kebijakan pemerintah.</li>
+                        </ul>
+                    </section>
+
+                    <section class="legal-section" id="pemesanan">
+                        <span class="section-num">Pasal 03</span>
+                        <h2>Pemesanan</h2>
+                        <ol>
+                            <li>Pemesanan dapat dilakukan melalui WhatsApp, telepon, atau formulir booking di website resmi.</li>
+                            <li>Penumpang wajib memberikan data yang benar dan lengkap: nama, jumlah penumpang, alamat jemput, alamat tujuan, tanggal, dan jam keberangkatan.</li>
+                            <li>Pemesanan dianggap sah setelah penumpang menerima <strong>konfirmasi resmi</strong> dari Perusahaan melalui WhatsApp atau kanal komunikasi resmi.</li>
+                            <li>Kami menyarankan pemesanan dilakukan minimal <strong>1×24 jam</strong> sebelum keberangkatan untuk rute reguler, dan <strong>3×24 jam</strong> untuk carter atau rombongan.</li>
+                            <li>Perusahaan berhak menolak pemesanan apabila terdapat indikasi penipuan, data palsu, atau permintaan yang di luar cakupan layanan.</li>
+                        </ol>
+                    </section>
+
+                    <section class="legal-section" id="pembayaran">
+                        <span class="section-num">Pasal 04</span>
+                        <h2>Pembayaran &amp; Tarif</h2>
+                        <ol>
+                            <li>Tarif ditetapkan berdasarkan rute, jumlah penumpang, jenis armada, dan tanggal keberangkatan. Tarif yang berlaku adalah tarif yang dikonfirmasi saat pemesanan.</li>
+                            <li>Pembayaran dapat dilakukan secara <strong>tunai kepada sopir</strong> pada hari keberangkatan, atau <strong>transfer bank</strong> sesuai instruksi dari Perusahaan.</li>
+                            <li>Untuk carter dan rombongan, Perusahaan dapat meminta uang muka (DP) sebesar <strong>30%–50%</strong> dari total biaya sebagai tanda jadi.</li>
+                            <li>Tarif yang tercantum sudah termasuk biaya bahan bakar, sopir, dan asuransi dasar kendaraan. <strong>Tidak termasuk</strong> biaya tol (jika ada), biaya makan sopir, atau biaya parkir di luar ketentuan.</li>
+                            <li>Perusahaan tidak bertanggung jawab atas kerugian akibat pembayaran yang dilakukan ke rekening yang bukan atas nama Perusahaan resmi.</li>
+                        </ol>
+                    </section>
+
+                    <section class="legal-section" id="pembatalan">
+                        <span class="section-num">Pasal 05</span>
+                        <h2>Pembatalan &amp; Pengembalian Dana (Refund)</h2>
+                        <p>Pembatalan pemesanan dapat dilakukan dengan ketentuan sebagai berikut:</p>
+                        <ul>
+                            <li><strong>Lebih dari 24 jam</strong> sebelum keberangkatan: pengembalian dana penuh (100%) jika sudah membayar DP.</li>
+                            <li><strong>12–24 jam</strong> sebelum keberangkatan: pengembalian dana <strong>50%</strong> dari DP.</li>
+                            <li><strong>Kurang dari 12 jam</strong> atau tidak ada kabar (no-show): DP <strong>hangus</strong> dan tidak dapat dikembalikan.</li>
+                            <li>Untuk pembayaran tunai di hari keberangkatan, pembatalan mendadak dapat dikenakan biaya administrasi sesuai kebijakan Perusahaan.</li>
+                            <li>Penumpang dapat mengalihkan jadwal (reschedule) 1× tanpa biaya tambahan, dengan pemberitahuan minimal 12 jam sebelum keberangkatan.</li>
+                        </ul>
+                        <div class="legal-note">
+                            <strong>Catatan:</strong> Refund diproses maksimal <strong>7 hari kerja</strong> setelah pembatalan disetujui, dan akan ditransfer ke rekening atas nama pemesan.
+                        </div>
+                    </section>
+
+                    <section class="legal-section" id="jadwal">
+                        <span class="section-num">Pasal 06</span>
+                        <h2>Jadwal &amp; Keterlambatan</h2>
+                        <ol>
+                            <li>Perusahaan berkomitmen menjemput penumpang sesuai jam yang telah disepakati.</li>
+                            <li>Estimasi waktu tempuh (misalnya Jakarta ±4–5 jam) bersifat <strong>perkiraan</strong> dan dapat berubah karena kondisi lalu lintas, cuaca, atau kejadian tak terduga.</li>
+                            <li>Penumpang diharapkan sudah siap <strong>15 menit sebelum</strong> jam jemput. Keterlambatan penumpang lebih dari 20 menit dapat mengakibatkan penjemputan dilewati tanpa refund.</li>
+                            <li>Sopir akan menghubungi penumpang saat dalam perjalanan menuju titik jemput. Pastikan nomor WhatsApp aktif.</li>
+                        </ol>
+                    </section>
+
+                    <section class="legal-section" id="penumpang">
+                        <span class="section-num">Pasal 07</span>
+                        <h2>Hak &amp; Kewajiban Penumpang</h2>
+                        <p><strong>Hak Penumpang:</strong></p>
+                        <ul>
+                            <li>Mendapatkan layanan sesuai kesepakatan yang telah dikonfirmasi.</li>
+                            <li>Mendapatkan armada yang layak, bersih, dan ber-AC.</li>
+                            <li>Mengajukan keluhan atau klaim sesuai prosedur yang berlaku.</li>
+                        </ul>
+                        <p><strong>Kewajiban Penumpang:</strong></p>
+                        <ul>
+                            <li>Memberikan data yang benar dan lengkap saat pemesanan.</li>
+                            <li>Mematuhi jadwal jemput yang telah disepakati.</li>
+                            <li>Menjaga kebersihan kendaraan dan tidak merusak fasilitas armada.</li>
+                            <li>Tidak membawa barang yang dilarang hukum (narkoba, senjata, barang ilegal, satwa dilindungi).</li>
+                            <li>Tidak merokok, mengonsumsi minuman beralkohol, atau melakukan tindakan yang mengganggu penumpang lain di dalam kendaraan.</li>
+                            <li>Bertanggung jawab atas barang bawaan pribadi masing-masing.</li>
+                        </ul>
+                    </section>
+
+                    <section class="legal-section" id="bagasi">
+                        <span class="section-num">Pasal 08</span>
+                        <h2>Bagasi &amp; Barang Bawaan</h2>
+                        <ol>
+                            <li>Setiap penumpang diperbolehkan membawa <strong>1 koper besar + 1 tas kabin</strong> tanpa biaya tambahan.</li>
+                            <li>Barang bawaan berlebih dapat dikenakan biaya tambahan atau harus dipesan sebagai kursi tambahan, tergantung kapasitas armada.</li>
+                            <li>Barang berharga (uang tunai, perhiasan, dokumen, elektronik) sepenuhnya menjadi tanggung jawab penumpang. Perusahaan <strong>tidak bertanggung jawab</strong> atas kehilangan barang berharga yang tidak dititipkan secara resmi.</li>
+                            <li>Barang yang tertinggal di kendaraan dapat kami simpan maksimal <strong>7 hari</strong>. Setelah itu, Perusahaan berhak memusnahkan atau menyerahkan kepada pihak berwenang.</li>
+                            <li>Pengiriman paket melalui layanan antar paket wajib mencantumkan identitas pengirim dan penerima secara lengkap.</li>
+                        </ol>
+                    </section>
+
+                    <section class="legal-section" id="tanggungjawab">
+                        <span class="section-num">Pasal 09</span>
+                        <h2>Batas Tanggung Jawab</h2>
+                        <ol>
+                            <li>Perusahaan bertanggung jawab atas keselamatan penumpang selama berada di dalam kendaraan sesuai ketentuan asuransi yang berlaku.</li>
+                            <li>Perusahaan <strong>tidak bertanggung jawab</strong> atas kerugian tidak langsung seperti kehilangan pekerjaan, keterlambatan penerbangan, atau kerugian komersial akibat keterlambatan di luar kendali kami.</li>
+                            <li>Perusahaan <strong>tidak bertanggung jawab</strong> atas kehilangan atau kerusakan barang bawaan pribadi penumpang yang tidak dititipkan secara resmi.</li>
+                            <li>Klaim atas kerusakan atau kehilangan yang disebabkan oleh kelalaian Perusahaan akan diselesaikan secara musyawarah, dengan nilai penggantian maksimal sesuai ketentuan asuransi kendaraan.</li>
+                            <li>Keluhan atau klaim wajib disampaikan maksimal <strong>3×24 jam</strong> setelah kejadian, disertai bukti pendukung.</li>
+                        </ol>
+                    </section>
+
+                    <section class="legal-section" id="force-majeure">
+                        <span class="section-num">Pasal 10</span>
+                        <h2>Force Majeure</h2>
+                        <p>
+                            Perusahaan dibebaskan dari tanggung jawab atas keterlambatan atau pembatalan yang disebabkan oleh keadaan di luar kendali, termasuk namun tidak terbatas pada:
+                        </p>
+                        <ul>
+                            <li>Bencana alam (gempa, banjir, tanah longsor, angin kencang).</li>
+                            <li>Kerusuhan, demonstrasi, atau keadaan darurat keamanan.</li>
+                            <li>Penutupan jalan, pengalihan rute, atau kebijakan pemerintah.</li>
+                            <li>Pandemi atau wabah penyakit yang ditetapkan resmi oleh pemerintah.</li>
+                            <li>Kerusakan kendaraan yang tidak terduga di tengah perjalanan.</li>
+                        </ul>
+                        <p>
+                            Dalam kondisi tersebut, Perusahaan akan berupaya maksimal memberikan solusi terbaik, termasuk penjadwalan ulang atau penggantian armada tanpa biaya tambahan.
+                        </p>
+                    </section>
+
+                    <section class="legal-section" id="privasi">
+                        <span class="section-num">Pasal 11</span>
+                        <h2>Perlindungan Data Pribadi</h2>
+                        <ol>
+                            <li>Data pribadi penumpang (nama, nomor telepon, alamat, dan informasi perjalanan) hanya digunakan untuk keperluan operasional layanan.</li>
+                            <li>Perusahaan <strong>tidak akan menjual, menyewakan, atau membagikan</strong> data penumpang kepada pihak ketiga tanpa izin, kecuali diwajibkan oleh hukum.</li>
+                            <li>Data penumpang disimpan secara aman dan hanya dapat diakses oleh pihak yang berkepentingan di dalam Perusahaan.</li>
+                            <li>Penumpang berhak meminta penghapusan data pribadinya setelah perjalanan selesai, dengan menghubungi kontak resmi Perusahaan.</li>
+                        </ol>
+                    </section>
+
+                    <section class="legal-section" id="hukum">
+                        <span class="section-num">Pasal 12</span>
+                        <h2>Hukum yang Berlaku &amp; Penyelesaian Sengketa</h2>
+                        <ol>
+                            <li>Syarat &amp; Ketentuan ini tunduk pada hukum yang berlaku di Republik Indonesia.</li>
+                            <li>Setiap perselisihan akan diupayakan penyelesaian secara <strong>musyawarah untuk mufakat</strong> terlebih dahulu.</li>
+                            <li>Apabila musyawarah tidak mencapai kesepakatan, para pihak sepakat untuk menyelesaikan sengketa melalui jalur hukum yang berlaku di wilayah Kabupaten Majalengka, Jawa Barat.</li>
+                        </ol>
+                    </section>
+
+                    <section class="legal-section" id="perubahan">
+                        <span class="section-num">Pasal 13</span>
+                        <h2>Perubahan Ketentuan</h2>
+                        <p>
+                            Perusahaan berhak mengubah, menambah, atau memperbarui Syarat &amp; Ketentuan ini kapan saja tanpa pemberitahuan terlebih dahulu. Versi terbaru akan selalu dipublikasikan di halaman ini dengan tanggal pembaruan yang tercantum di bagian atas.
+                        </p>
+                        <p>
+                            Penumpang disarankan untuk memeriksa halaman ini secara berkala sebelum melakukan pemesanan. Dengan tetap menggunakan layanan kami setelah perubahan, penumpang dianggap menyetujui ketentuan yang diperbarui.
+                        </p>
+                    </section>
+
+                    <div class="legal-contact">
+                        <h3>Ada pertanyaan tentang ketentuan ini?</h3>
+                        <p>Tim kami siap membantu menjawab pertanyaan Anda terkait pemesanan, pembayaran, atau kebijakan layanan.</p>
+                        <div class="contact-lines">
+                            <span>WhatsApp: +62 831-4110-6274 (24 jam)</span>
+                            <span>Email: fajaragustian588@gmail.com</span>
+                            <span>Alamat: Jl. Dukuh Lebak, RT 01/RW 05, Desa Rajagaluh Kidul, Kec. Rajagaluh, Kab. Majalengka, Jawa Barat 45472</span>
+                        </div>
+                        <a href="https://wa.me/6283141106274?text=Halo%20Putra%20Galuh%20Travel%2C%20saya%20ingin%20bertanya%20tentang%20Syarat%20%26%20Ketentuan."
+                           target="_blank" rel="noopener" class="btn-blue">
+                            Tanya via WhatsApp
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="7" y1="17" x2="17" y2="7"/>
+                                <polyline points="7 7 17 7 17 17"/>
+                            </svg>
+                        </a>
+                    </div>
+
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 Putra Galuh Travel. Seluruh hak cipta dilindungi.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============ WHATSAPP FLOAT ============ -->
+    <a href="https://wa.me/6283141106274?text=Halo%20Putra%20Galuh%20Travel%2C%20saya%20ingin%20bertanya."
+       class="whatsapp-float" target="_blank" rel="noopener" aria-label="Hubungi via WhatsApp">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.83 14.12c-.25.7-1.45 1.33-2.03 1.42-.52.08-1.18.12-1.9-.12-.44-.15-1-.32-1.71-.61-3.01-1.3-4.98-4.33-5.13-4.53-.15-.2-1.23-1.63-1.23-3.11 0-1.48.78-2.21 1.05-2.51.27-.3.6-.38.8-.38.2 0 .4 0 .58.01.19.01.44-.07.68.52.25.6.85 2.06.92 2.21.08.15.13.33.03.53-.1.2-.15.32-.3.5-.15.18-.32.4-.46.54-.15.15-.31.31-.13.61.18.3.79 1.31 1.7 2.12 1.17 1.04 2.15 1.37 2.46 1.52.3.15.48.13.66-.08.18-.2.76-.88.96-1.18.2-.3.4-.25.68-.15.28.1 1.77.83 2.07.98.3.15.5.23.58.35.08.13.08.73-.17 1.43z"/>
+        </svg>
+    </a>
+
+    <!-- ============ SCRIPT ============ -->
+    <script>
+        const header = document.getElementById('header');
+
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 60) header.classList.add('scrolled');
+            else header.classList.remove('scrolled');
+            updateActiveToc();
+        });
+
+        function updateActiveToc() {
+            const sections = document.querySelectorAll('.legal-section');
+            const tocLinks = document.querySelectorAll('.toc ul li a');
+            let current = '';
+
+            sections.forEach(section => {
+                const top = section.offsetTop - 150;
+                const height = section.offsetHeight;
+                if (window.scrollY >= top && window.scrollY < top + height) {
+                    current = '#' + section.getAttribute('id');
+                }
+            });
+
+            tocLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === current) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        document.querySelectorAll('.toc ul li a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    e.preventDefault();
+                    const offset = 90;
+                    window.scrollTo({
+                        top: targetElement.offsetTop - offset,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        (function() {
+            const hamburger = document.getElementById('hamburger');
+            const drawer = document.getElementById('mobileDrawer');
+            const overlay = document.getElementById('drawerOverlay');
+            const drawerClose = document.getElementById('drawerClose');
+            if (!hamburger || !drawer || !overlay) return;
+
+            function openDrawer() {
+                drawer.classList.add('open');
+                overlay.classList.add('open');
+                hamburger.classList.add('active');
+                hamburger.setAttribute('aria-expanded', 'true');
+                drawer.setAttribute('aria-hidden', 'false');
+                document.body.classList.add('drawer-open');
+            }
+
+            function closeDrawer() {
+                drawer.classList.remove('open');
+                overlay.classList.remove('open');
+                hamburger.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
+                drawer.setAttribute('aria-hidden', 'true');
+                document.body.classList.remove('drawer-open');
+            }
+
+            hamburger.addEventListener('click', function(e) {
+                e.stopPropagation();
+                drawer.classList.contains('open') ? closeDrawer() : openDrawer();
+            });
+
+            if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
+            overlay.addEventListener('click', closeDrawer);
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && drawer.classList.contains('open')) closeDrawer();
+            });
+
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 900 && drawer.classList.contains('open')) closeDrawer();
+            });
+
+            const submenuTriggers = drawer.querySelectorAll('.drawer-menu-item[data-submenu]');
+            submenuTriggers.forEach(function(trigger) {
+                trigger.addEventListener('click', function() {
+                    const targetId = trigger.getAttribute('data-submenu');
+                    const targetSubmenu = document.getElementById(targetId);
+                    if (!targetSubmenu) return;
+
+                    const isOpen = trigger.classList.contains('open');
+                    submenuTriggers.forEach(t => t.classList.remove('open'));
+                    drawer.querySelectorAll('.drawer-submenu').forEach(sm => sm.classList.remove('open'));
+
+                    if (!isOpen) {
+                        trigger.classList.add('open');
+                        targetSubmenu.classList.add('open');
+                    }
+                });
+            });
+
+            drawer.querySelectorAll('a').forEach(function(link) {
+                link.addEventListener('click', closeDrawer);
+            });
+        })();
+    </script>
+</body>
+</html>

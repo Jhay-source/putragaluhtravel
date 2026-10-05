@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Majalengka – Cianjur | Putra Galuh Travel</title>
+    <meta name="description" content="Jarak dekat, tapi banyak yang tetap pilih travel karena hemat waktu dan tanpa ganti angkutan.">
+    <meta name="keywords" content="travel majalengka cianjur, travel door to door, travel majalengka">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #FFFFFF;
+            --bg-alt: #F5F8FC;
+            --bg-dark: #0F1F3D;
+            --ink: #0F1F3D;
+            --ink-soft: #344466;
+            --muted: #64748B;
+            --muted-2: #94A3B8;
+            --line: #E2E8F0;
+            --blue: #2563EB;
+            --blue-hover: #1D4ED8;
+            --blue-dark: #1E40AF;
+            --blue-light: #60A5FA;
+            --blue-soft: #EFF6FF;
+            --blue-line: #BFDBFE;
+            --green: #16A34A;
+            --green-soft: #DCFCE7;
+            --cream: #FFFFFF;
+            --cream-muted: rgba(255, 255, 255, 0.78);
+            --cream-muted-2: rgba(255, 255, 255, 0.5);
+            --ff-head: 'Fraunces', Georgia, serif;
+            --ff-body: 'Manrope', system-ui, -apple-system, sans-serif;
+            --radius: 12px;
+            --radius-lg: 18px;
+            --trans: all 0.25s ease;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--ff-body); background: var(--bg); color: var(--ink); line-height: 1.65; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+        body.drawer-open { overflow: hidden; }
+        a { text-decoration: none; color: inherit; }
+        img { max-width: 100%; height: auto; display: block; }
+        ul { list-style: none; }
+        .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+        ::selection { background: var(--blue); color: #FFFFFF; }
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: var(--bg-alt); }
+        ::-webkit-scrollbar-thumb { background: #C7D2E0; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--blue); }
+
+        .header { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; background: rgba(15, 31, 61, 0.96); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid rgba(37, 99, 235, 0.3); padding: 14px 0; transition: var(--trans); }
+        .header.scrolled { padding: 11px 0; background: rgba(255, 255, 255, 0.96); border-bottom-color: var(--line); }
+        .header .container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { display: flex; align-items: center; z-index: 1002; }
+        .logo img { height: 44px; width: auto; transition: var(--trans); }
+        .logo:hover img { opacity: 0.85; }
+        .nav-menu { display: flex; align-items: center; gap: 24px; }
+        .nav-menu li a { font-weight: 500; font-size: 0.9rem; color: rgba(255, 255, 255, 0.85); transition: var(--trans); position: relative; }
+        .nav-menu li a:hover, .nav-menu li a.active { color: var(--blue-light); }
+        .nav-menu li a.active::after { content: ''; position: absolute; left: 0; bottom: -6px; width: 100%; height: 2px; background: var(--blue); border-radius: 2px; }
+        .nav-menu li a.nav-cta { background: var(--blue); color: #FFFFFF; padding: 10px 22px; border-radius: 8px; font-weight: 700; font-size: 0.85rem; transition: var(--trans); }
+        .nav-menu li a.nav-cta:hover { background: var(--blue-light); }
+        .nav-menu li a.nav-cta.active::after { display: none; }
+        .header.scrolled .nav-menu li a { color: var(--ink-soft); }
+        .header.scrolled .nav-menu li a:hover, .header.scrolled .nav-menu li a.active { color: var(--blue); }
+        .header.scrolled .nav-menu li a.active::after { background: var(--blue); }
+        .header.scrolled .nav-menu li a.nav-cta { background: var(--blue); color: #FFFFFF; }
+        .header.scrolled .nav-menu li a.nav-cta:hover { background: var(--blue-hover); }
+
+        .hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 44px; height: 44px; background: transparent; border: 1px solid rgba(96, 165, 250, 0.5); border-radius: 10px; cursor: pointer; padding: 0 11px; z-index: 1002; transition: var(--trans); }
+        .hamburger span { display: block; height: 1.8px; width: 100%; background: var(--blue-light); border-radius: 2px; transition: var(--trans); }
+        .header.scrolled .hamburger { border-color: var(--line); }
+        .header.scrolled .hamburger span { background: var(--blue); }
+        .hamburger.active span:nth-child(1) { transform: translateY(6.8px) rotate(45deg); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: translateY(-6.8px) rotate(-45deg); }
+
+        .drawer-overlay { position: fixed; inset: 0; background: rgba(15, 31, 61, 0.6); backdrop-filter: blur(2px); opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease; z-index: 1150; }
+        .drawer-overlay.open { opacity: 1; visibility: visible; }
+        .mobile-drawer { position: fixed; top: 0; left: 0; width: 78vw; max-width: 340px; height: 100vh; height: 100dvh; background: var(--bg); border-right: 1px solid var(--line); transform: translateX(-100%); transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1); z-index: 1200; display: flex; flex-direction: column; will-change: transform; }
+        .mobile-drawer.open { transform: translateX(0); }
+        .drawer-header { display: flex; justify-content: space-between; align-items: center; padding: 18px 20px; border-bottom: 1px solid var(--line); flex-shrink: 0; }
+        .drawer-logo img { height: 38px; width: auto; }
+        .drawer-close { width: 40px; height: 40px; background: transparent; border: 1px solid var(--line); border-radius: 10px; color: var(--ink); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: var(--trans); flex-shrink: 0; }
+        .drawer-close:hover { border-color: var(--blue); color: var(--blue); }
+        .drawer-close svg { width: 16px; height: 16px; stroke: currentColor; stroke-width: 2; }
+        .drawer-body { flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+        .drawer-menu { display: flex; flex-direction: column; }
+        .drawer-menu > li { border-bottom: 1px solid var(--line); }
+        .drawer-menu > li > a { display: flex; justify-content: space-between; align-items: center; padding: 15px 22px; color: var(--ink); font-size: 0.95rem; font-weight: 500; transition: var(--trans); min-height: 50px; }
+        .drawer-menu-item { display: flex; justify-content: space-between; align-items: center; padding: 15px 22px; color: var(--ink); font-size: 0.95rem; font-weight: 500; cursor: pointer; user-select: none; min-height: 50px; transition: var(--trans); }
+        .drawer-menu > li > a:hover, .drawer-menu-item:hover, .drawer-menu-item.open { color: var(--blue); background: var(--blue-soft); }
+        .drawer-menu-item .chevron { width: 14px; height: 14px; stroke: currentColor; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; transition: transform 0.3s ease; flex-shrink: 0; }
+        .drawer-menu-item.open .chevron { transform: rotate(180deg); }
+        .drawer-submenu { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; background: var(--bg-alt); }
+        .drawer-submenu.open { max-height: 600px; }
+        .drawer-submenu li { border-bottom: 1px solid rgba(0, 0, 0, 0.04); }
+        .drawer-submenu li:last-child { border-bottom: none; }
+        .drawer-submenu li a, .drawer-submenu li .submenu-static { display: block; padding: 11px 22px 11px 40px; color: var(--muted); font-size: 0.87rem; transition: var(--trans); }
+        .drawer-submenu li a:hover { color: var(--blue); padding-left: 44px; }
+        .drawer-submenu li .submenu-static { cursor: default; }
+        .drawer-footer { border-top: 1px solid var(--line); padding: 16px 20px 20px; flex-shrink: 0; }
+        .drawer-lang { display: flex; justify-content: space-between; align-items: center; padding: 10px 0 14px; color: var(--muted); font-size: 0.86rem; border-bottom: 1px solid var(--line); margin-bottom: 14px; }
+        .drawer-lang .lang-left { display: flex; align-items: center; gap: 8px; }
+        .drawer-lang .lang-left svg, .drawer-lang .lang-chevron { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 1.8; }
+        .drawer-contact-btn { display: flex; justify-content: center; align-items: center; gap: 8px; width: 100%; padding: 13px 20px; border: none; border-radius: 10px; color: #FFFFFF; background: var(--blue); font-weight: 600; font-size: 0.88rem; transition: var(--trans); font-family: var(--ff-body); cursor: pointer; }
+        .drawer-contact-btn:hover { background: var(--blue-hover); }
+        .drawer-contact-btn svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+
+        .article-hero { padding: 148px 0 40px; background: var(--bg-alt); border-bottom: 1px solid var(--line); }
+        .article-hero .breadcrumb { display: inline-flex; align-items: center; gap: 8px; font-size: 0.82rem; color: var(--muted); margin-bottom: 22px; letter-spacing: 0.3px; flex-wrap: wrap; }
+        .article-hero .breadcrumb a { color: var(--blue); transition: var(--trans); }
+        .article-hero .breadcrumb a:hover { color: var(--blue-hover); }
+        .article-hero .breadcrumb .sep { color: var(--muted-2); }
+        .article-hero .article-meta { display: flex; align-items: center; gap: 12px; font-size: 0.78rem; color: var(--muted); letter-spacing: 0.4px; text-transform: uppercase; font-weight: 600; margin-bottom: 16px; flex-wrap: wrap; }
+        .article-hero .article-meta .dot { width: 4px; height: 4px; background: var(--blue); border-radius: 50%; }
+        .article-hero .article-meta .kategori { color: var(--blue); }
+        .article-hero h1 { font-family: var(--ff-head); font-size: 2.8rem; font-weight: 600; line-height: 1.12; letter-spacing: -1.2px; margin-bottom: 20px; color: var(--ink); max-width: 880px; }
+        .article-hero .lead { color: var(--ink-soft); font-size: 1.08rem; line-height: 1.7; max-width: 780px; }
+
+        .article-section { padding: 40px 0 60px; background: var(--bg); }
+        .article-layout { display: grid; grid-template-columns: 1fr 260px; gap: 60px; align-items: start; }
+        .article-body { max-width: 720px; }
+        .article-body .featured-img { width: 100%; aspect-ratio: 16/9; border-radius: var(--radius-lg); overflow: hidden; margin-bottom: 36px; border: 1px solid var(--line); }
+        .article-body .featured-img img { width: 100%; height: 100%; object-fit: cover; }
+        .article-body p { color: var(--ink-soft); font-size: 1.02rem; line-height: 1.85; margin-bottom: 22px; }
+        .article-body h2 { font-family: var(--ff-head); font-size: 1.65rem; font-weight: 600; color: var(--ink); margin: 40px 0 16px; line-height: 1.3; letter-spacing: -0.4px; }
+        .article-body h3 { font-family: var(--ff-head); font-size: 1.25rem; font-weight: 600; color: var(--ink); margin: 32px 0 12px; line-height: 1.35; letter-spacing: -0.2px; }
+        .article-body strong { color: var(--ink); font-weight: 600; }
+        .article-body a { color: var(--blue); font-weight: 600; border-bottom: 1px solid var(--blue-line); transition: var(--trans); }
+        .article-body a:hover { border-bottom-color: var(--blue); }
+        .article-body ul, .article-body ol { margin: 0 0 22px 0; padding-left: 0; list-style: none; }
+        .article-body ul li, .article-body ol li { color: var(--ink-soft); font-size: 1.02rem; line-height: 1.75; padding-left: 28px; position: relative; margin-bottom: 10px; }
+        .article-body ul li::before { content: ''; position: absolute; left: 0; top: 12px; width: 8px; height: 8px; background: var(--blue); border-radius: 50%; }
+        .article-body ol { counter-reset: item; }
+        .article-body ol li::before { counter-increment: item; content: counter(item); position: absolute; left: 0; top: 0; width: 20px; height: 20px; background: var(--blue-soft); color: var(--blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.72rem; font-weight: 700; margin-top: 5px; }
+        .article-body blockquote { border-left: 3px solid var(--blue); padding: 4px 0 4px 22px; margin: 28px 0; font-family: var(--ff-head); font-size: 1.15rem; font-style: italic; color: var(--ink); line-height: 1.6; }
+        .article-body .callout { background: var(--blue-soft); border: 1px solid var(--blue-line); border-left: 4px solid var(--blue); border-radius: var(--radius); padding: 22px 26px; margin: 30px 0; }
+        .article-body .callout .callout-title { font-family: var(--ff-head); font-size: 1.05rem; font-weight: 600; color: var(--blue); margin-bottom: 8px; letter-spacing: -0.2px; }
+        .article-body .callout p { color: var(--ink-soft); font-size: 0.94rem; margin-bottom: 0; line-height: 1.7; }
+        .article-body .callout ul { margin: 10px 0 0 0; }
+        .article-body .callout ul li { font-size: 0.94rem; margin-bottom: 6px; }
+
+        .article-sidebar { position: sticky; top: 100px; display: flex; flex-direction: column; gap: 24px; }
+        .sidebar-card { background: var(--bg-alt); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; }
+        .sidebar-card .card-title { font-family: var(--ff-head); font-size: 1rem; font-weight: 600; color: var(--ink); margin-bottom: 12px; letter-spacing: -0.2px; }
+        .sidebar-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.65; margin-bottom: 14px; }
+        .sidebar-card .btn-side { display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 12px 18px; background: var(--blue); color: #FFFFFF; border-radius: 10px; font-weight: 600; font-size: 0.88rem; transition: var(--trans); text-align: center; }
+        .sidebar-card .btn-side:hover { background: var(--blue-hover); }
+        .sidebar-card .btn-side svg { width: 15px; height: 15px; fill: currentColor; }
+        .sidebar-list { display: flex; flex-direction: column; gap: 14px; }
+        .sidebar-list li a { display: block; padding-bottom: 12px; border-bottom: 1px solid var(--line); font-size: 0.88rem; color: var(--ink-soft); line-height: 1.5; transition: var(--trans); }
+        .sidebar-list li:last-child a { border-bottom: none; padding-bottom: 0; }
+        .sidebar-list li a:hover { color: var(--blue); }
+        .sidebar-list li a .mini-meta { display: block; font-size: 0.72rem; color: var(--muted); letter-spacing: 0.4px; text-transform: uppercase; font-weight: 600; margin-bottom: 4px; }
+
+        .author-box { margin-top: 40px; padding: 24px 26px; background: var(--bg-alt); border: 1px solid var(--line); border-radius: var(--radius); display: flex; gap: 18px; align-items: center; }
+        .author-box .author-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--blue-soft); border: 1px solid var(--blue-line); display: flex; align-items: center; justify-content: center; color: var(--blue); font-family: var(--ff-head); font-weight: 700; font-size: 1.15rem; flex-shrink: 0; }
+        .author-box .author-info { flex: 1; }
+        .author-box .author-info .author-name { font-weight: 600; font-size: 0.95rem; color: var(--ink); margin-bottom: 2px; }
+        .author-box .author-info p { font-size: 0.85rem; color: var(--muted); margin: 0; line-height: 1.55; }
+
+        .article-cta { margin-top: 46px; padding: 32px 34px; background: var(--bg-dark); color: #FFFFFF; border-radius: var(--radius-lg); display: flex; align-items: center; gap: 26px; justify-content: space-between; flex-wrap: wrap; }
+        .article-cta .cta-text { flex: 1; min-width: 240px; }
+        .article-cta .cta-text h3 { font-family: var(--ff-head); font-size: 1.35rem; font-weight: 600; margin-bottom: 6px; letter-spacing: -0.3px; }
+        .article-cta .cta-text p { color: rgba(255, 255, 255, 0.72); font-size: 0.92rem; line-height: 1.6; margin: 0; }
+        .article-cta .cta-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+        .article-cta .btn-blue { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 13px 26px; background: var(--blue); color: #FFFFFF; border-radius: 10px; font-weight: 600; font-size: 0.9rem; transition: var(--trans); }
+        .article-cta .btn-blue:hover { background: var(--blue-hover); }
+        .article-cta .btn-outline { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 13px 26px; background: transparent; color: #FFFFFF; border: 1.5px solid rgba(96, 165, 250, 0.6); border-radius: 10px; font-weight: 600; font-size: 0.9rem; transition: var(--trans); }
+        .article-cta .btn-outline:hover { border-color: var(--blue-light); background: rgba(96, 165, 250, 0.12); }
+
+        .all-articles { padding: 70px 0 90px; background: var(--bg-alt); border-top: 1px solid var(--line); }
+        .all-articles .section-head { margin-bottom: 34px; display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+        .all-articles .section-head h2 { font-family: var(--ff-head); font-size: 1.75rem; font-weight: 600; color: var(--ink); letter-spacing: -0.5px; margin-bottom: 6px; }
+        .all-articles .section-head p { color: var(--muted); font-size: 0.94rem; }
+        .all-articles .section-head .btn-more { display: inline-flex; align-items: center; gap: 6px; color: var(--blue); font-weight: 600; font-size: 0.88rem; border-bottom: 1px solid var(--blue-line); padding-bottom: 2px; transition: var(--trans); }
+        .all-articles .section-head .btn-more:hover { border-bottom-color: var(--blue); }
+        .articles-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 18px; }
+        .article-card { background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; transition: var(--trans); display: flex; flex-direction: column; position: relative; }
+        .article-card:hover { border-color: var(--blue-line); transform: translateY(-3px); box-shadow: 0 15px 35px rgba(37, 99, 235, 0.08); }
+        .article-card .ac-thumb { aspect-ratio: 16/10; overflow: hidden; background: var(--bg-alt); position: relative; }
+        .article-card .ac-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .article-card:hover .ac-thumb img { transform: scale(1.05); }
+        .article-card.current { border-color: var(--blue); background: var(--blue-soft); pointer-events: none; }
+        .article-card .current-badge { position: absolute; top: 10px; left: 10px; background: var(--blue); color: #FFFFFF; padding: 4px 10px; border-radius: 6px; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase; z-index: 2; }
+        .article-card .ac-body { padding: 16px 18px 20px; display: flex; flex-direction: column; flex: 1; }
+        .article-card .ac-meta { font-size: 0.7rem; color: var(--blue); letter-spacing: 0.5px; text-transform: uppercase; font-weight: 700; margin-bottom: 8px; }
+        .article-card h4 { font-family: var(--ff-head); font-size: 0.98rem; font-weight: 600; color: var(--ink); line-height: 1.4; letter-spacing: -0.2px; transition: var(--trans); }
+        .article-card:hover h4 { color: var(--blue); }
+        .article-card.current h4 { color: var(--ink); }
+
+        .footer { background: var(--bg-dark); color: var(--cream-muted); padding: 34px 0 26px; border-top: 1px solid rgba(37, 99, 235, 0.2); }
+        .footer-bottom { text-align: center; font-size: 0.84rem; color: var(--cream-muted-2); }
+
+        .whatsapp-float { position: fixed; bottom: 22px; right: 22px; z-index: 999; width: 56px; height: 56px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 24px rgba(37, 211, 102, 0.35); transition: var(--trans); }
+        .whatsapp-float:hover { transform: scale(1.08); box-shadow: 0 12px 32px rgba(37, 211, 102, 0.5); }
+        .whatsapp-float svg { width: 28px; height: 28px; fill: #fff; }
+
+        @media (max-width: 1024px) {
+            .nav-menu { gap: 20px; }
+        }
+        @media (max-width: 900px) {
+            .hamburger { display: flex; }
+            .nav-menu { display: none; }
+            .article-hero { padding: 130px 0 34px; }
+            .article-hero h1 { font-size: 2rem; letter-spacing: -0.6px; }
+            .article-layout { grid-template-columns: 1fr; gap: 40px; }
+            .article-sidebar { position: static; }
+            .all-articles { padding: 50px 0 70px; }
+        }
+        @media (min-width: 901px) { .mobile-drawer, .drawer-overlay { display: none !important; } }
+        @media (max-width: 560px) {
+            .container { padding: 0 18px; }
+            .logo img { height: 38px; }
+            .hamburger { width: 40px; height: 40px; padding: 0 10px; }
+            .mobile-drawer { width: 82vw; max-width: 320px; }
+            .article-hero { padding: 118px 0 28px; }
+            .article-hero h1 { font-size: 1.65rem; }
+            .article-hero .lead { font-size: 0.98rem; }
+            .article-section { padding: 30px 0 50px; }
+            .article-body p, .article-body ul li, .article-body ol li { font-size: 0.97rem; }
+            .article-body h2 { font-size: 1.35rem; margin: 32px 0 12px; }
+            .article-body h3 { font-size: 1.1rem; margin: 26px 0 10px; }
+            .article-cta { padding: 26px 22px; gap: 18px; }
+            .article-cta .cta-text h3 { font-size: 1.15rem; }
+            .author-box { padding: 18px 20px; gap: 14px; }
+            .articles-grid { grid-template-columns: 1fr; }
+            .whatsapp-float { width: 52px; height: 52px; bottom: 16px; right: 16px; }
+            .whatsapp-float svg { width: 26px; height: 26px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header" id="header">
+        <div class="container">
+            <a href="index.html" class="logo"><img src="icon.jpg" alt="Putra Galuh Travel"></a>
+            <nav>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html">Beranda</a></li>
+                    <li><a href="armada.html">Armada</a></li>
+                    <li><a href="layanan.html">Layanan</a></li>
+                    <li><a href="blog.html" class="active">Blog</a></li>
+                    <li><a href="syarat-ketentuan.html">Syarat &amp; Ketentuan</a></li>
+                    <li><a href="booking.html" class="nav-cta">Booking</a></li>
+                </ul>
+            </nav>
+            <button class="hamburger" id="hamburger" aria-label="Buka menu"><span></span><span></span><span></span></button>
+        </div>
+    </header>
+
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+
+    <aside class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
+        <div class="drawer-header">
+            <a href="index.html" class="drawer-logo"><img src="icon.jpg" alt="Putra Galuh Travel"></a>
+            <button class="drawer-close" id="drawerClose" aria-label="Tutup menu">
+                <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+        </div>
+        <div class="drawer-body">
+            <ul class="drawer-menu">
+                <li><a href="index.html">Beranda</a></li>
+                <li>
+                    <div class="drawer-menu-item" data-submenu="submenu-tentang">
+                        <span>Tentang Kami</span>
+                        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                    </div>
+                    <ul class="drawer-submenu" id="submenu-tentang">
+                        <li><a href="index.html#tentang">Profil</a></li>
+                        <li><a href="index.html#testimoni">Testimoni</a></li>
+                        <li><a href="index.html#faq">FAQ</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <div class="drawer-menu-item" data-submenu="submenu-layanan">
+                        <span>Layanan</span>
+                        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                    </div>
+                    <ul class="drawer-submenu" id="submenu-layanan">
+                        <li><a href="layanan.html#travel-reguler">Travel Reguler</a></li>
+                        <li><a href="layanan.html#carter">Carter Mobil + Sopir</a></li>
+                        <li><a href="layanan.html#bandara">Antar Jemput Bandara</a></li>
+                        <li><a href="layanan.html#pariwisata">Pariwisata</a></li>
+                        <li><a href="layanan.html#ziarah">Ziarah</a></li>
+                        <li><a href="layanan.html#paket">Antar Paket</a></li>
+                    </ul>
+                </li>
+                <li><a href="armada.html">Armada Kami</a></li>
+                <li><a href="booking.html">Pesan Tiket</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="index.html#kontak">Kontak</a></li>
+                <li><a href="syarat-ketentuan.html">Syarat &amp; Ketentuan</a></li>
+            </ul>
+        </div>
+        <div class="drawer-footer">
+            <div class="drawer-lang">
+                <span class="lang-left">
+                    <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="9"/><line x1="3" y1="12" x2="21" y2="12"/>
+                        <path d="M12 3a15 15 0 0 1 4 9 15 15 0 0 1-4 9 15 15 0 0 1-4-9 15 15 0 0 1 4-9z"/>
+                    </svg>
+                    Indonesia
+                </span>
+                <svg class="lang-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+            <a href="https://wa.me/6283141106274?text=Halo%20Putra%20Galuh%20Travel%2C%20saya%20ingin%20bertanya." target="_blank" rel="noopener" class="drawer-contact-btn">
+                Hubungi Kami
+                <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+            </a>
+        </div>
+    </aside>
+
+    <section class="article-hero">
+        <div class="container">
+            <nav class="breadcrumb">
+                <a href="index.html">Beranda</a>
+                <span class="sep">/</span>
+                <a href="blog.html">Blog</a>
+                <span class="sep">/</span>
+                <span>Majalengka – Cianjur</span>
+            </nav>
+            <div class="article-meta">
+                <span class="kategori">Rute</span>
+                <span class="dot"></span>
+                <span>30 Nov 2025</span>
+                <span class="dot"></span>
+                <span>4 menit baca</span>
+            </div>
+            <h1>Majalengka – Cianjur: rute singkat yang paling sering dipesan mendadak</h1>
+            <p class="lead">
+                Jarak dekat, tapi banyak yang tetap pilih travel karena hemat waktu dan tanpa ganti angkutan.
+            </p>
+        </div>
+    </section>
+
+    <section class="article-section">
+        <div class="container">
+            <div class="article-layout">
+
+                <article class="article-body">
+
+                    <figure class="featured-img">
+                        <img src="artikel-cianjur.jpg" alt="Cianjur" loading="lazy">
+                    </figure>
+
+                    <p>
+                        Rute Majalengka – Cianjur termasuk yang paling singkat kami layani: hanya <strong>1–2 jam</strong>. Karena jaraknya dekat, rute ini sering dipesan mendadak — kadang pagi pesan, sore jalan. Ini yang bikin rute Cianjur cukup unik.
+                    </p>
+
+                    <p>
+                        Pelanggan kami di rute ini biasanya keluarga yang mau mengunjungi kerabat, atau urusan bisnis kecil yang butuh kendaraan fleksibel. Ada juga yang lanjut ke Puncak atau Bogor dari Cianjur.
+                    </p>
+
+                    <h2>Kenapa tetap pilih travel, meski dekat?</h2>
+
+                    <p>
+                        Kalau jaraknya cuma 1–2 jam, banyak yang mikir: <em>"ngapain travel, naik angkot saja lebih murah."</em> Tapi ada beberapa alasan orang tetap pilih travel:
+                    </p>
+
+                    <ul>
+                        <li><strong>Tidak perlu ganti angkutan</strong> — kalau naik angkot, harus 2–3 kali transit</li>
+                        <li><strong>Bawa barang lebih mudah</strong> — muat koper, oleh-oleh, atau bingkisan</li>
+                        <li><strong>Waktu lebih pasti</strong> — angkot sering ngetem di terminal, travel tidak</li>
+                        <li><strong>Nyaman untuk lansia atau anak kecil</strong> — tidak capek ganti kendaraan</li>
+                    </ul>
+
+                    <p>
+                        Kalau Anda bawa 3 orang atau lebih, selisih harga travel vs angkot jadi tidak signifikan, tapi kenyamanannya jauh berbeda.
+                    </p>
+
+                    <h2>Rute yang kami lalui</h2>
+
+                    <p>
+                        Rute utamanya lewat <strong>Jalan Raya Cirebon – Bandung</strong>, atau alternatif lewat <strong>Tol Cisumdawu</strong> kalau titik jemput dan titik antar dekat pintu tol.
+                    </p>
+
+                    <p>Titik pengantaran di Cianjur yang sering kami lalui:</p>
+
+                    <ul>
+                        <li>Pasar Cianjur dan sekitar Alun-Alun</li>
+                        <li>Jalan Dr. Muwardi (pusat kota)</li>
+                        <li>Cipanas dan Pacet (arah Puncak)</li>
+                        <li>Ciranjang, Cilaku, Karangtengah (kecamatan)</li>
+                    </ul>
+
+                    <blockquote>
+                        "Anak saya kuliah di Cianjur. Tiap bulan saya kirim paket dan sekalian main. Kadang saya pesan travel pagi, sore sudah jalan. Praktis banget."
+                    </blockquote>
+
+                    <h2>Kenapa banyak yang pesan mendadak?</h2>
+
+                    <p>Tiga alasan utama:</p>
+
+                    <ol>
+                        <li><strong>Jarak dekat</strong> — tidak perlu persiapan khusus, bisa berangkat hari itu juga</li>
+                        <li><strong>Jadwal kami fleksibel</strong> — kalau slot reguler masih ada, kami bisa jemput 2–3 jam dari sekarang</li>
+                        <li><strong>Dipakai untuk urusan tidak terduga</strong> — ada keluarga sakit, ada urusan bisnis mendesak</li>
+                    </ol>
+
+                    <div class="callout">
+                        <div class="callout-title">Kalau butuh berangkat hari ini</div>
+                        <p>WhatsApp langsung ke <strong>0831-4110-6274</strong>. Kami cek ketersediaan slot paling cepat. Untuk rute Cianjur, biasanya masih ada slot meski pesan hari H, tapi tidak dijamin.</p>
+                    </div>
+
+                    <h2>Berapa biayanya?</h2>
+
+                    <p>
+                        Travel reguler Majalengka – Cianjur <strong>mulai dari Rp 130.000 per orang</strong>. Ini tarif paling murah di antara rute yang kami layani.
+                    </p>
+
+                    <p>Sudah termasuk:</p>
+
+                    <ul>
+                        <li>Penjemputan di rumah Anda</li>
+                        <li>Pengantaran ke alamat tujuan</li>
+                        <li>Kabin ber-AC</li>
+                        <li>Satu bagasi sedang</li>
+                    </ul>
+
+                    <p>
+                        Untuk <strong>carter</strong> (satu mobil penuh), bisa lebih hemat kalau Anda berangkat 4 orang atau lebih. Tanyakan tarifnya ke CS.
+                    </p>
+
+                    <h2>Bisa sekalian antar paket?</h2>
+
+                    <p>
+                        Bisa. Layanan "Antar Paket" kami tersedia untuk rute Cianjur. Cocok kalau Anda cuma mau kirim barang tanpa ikut berangkat. Tanya CS untuk tarif paket.
+                    </p>
+
+                    <h2>Baca juga</h2>
+
+                    <p>
+                        Kalau mau lihat rute lain, baca juga <a href="artikel-jakarta.html">Majalengka – Jakarta</a>, <a href="artikel-bandung.html">Majalengka – Bandung</a>, atau <a href="artikel-tips.html">tips untuk penumpang baru</a>.
+                    </p>
+
+                    <h2>Siap pesan?</h2>
+
+                    <p>
+                        Isi <a href="booking.html">form booking</a> dengan tujuan Cianjur. Kalau mau berangkat hari ini, WhatsApp lebih cepat daripada isi form.
+                    </p>
+
+                    <div class="author-box">
+                        <div class="author-avatar">PG</div>
+                        <div class="author-info">
+                            <div class="author-name">Tim Putra Galuh Travel</div>
+                            <p>Ditulis dari pengalaman 10 tahun mengantar penumpang dari Majalengka ke berbagai kota di Jawa Barat dan Jabodetabek.</p>
+                        </div>
+                    </div>
+
+                    <div class="article-cta">
+                        <div class="cta-text">
+                            <h3>Butuh ke Cianjur hari ini?</h3>
+                            <p>WhatsApp langsung, kami cek slot paling cepat. Balas 5–15 menit.</p>
+                        </div>
+                        <div class="cta-actions">
+                            <a href="booking.html" class="btn-blue">Pesan Tiket</a>
+                            <a href="https://wa.me/6283141106274?text=Halo%20Putra%20Galuh%20Travel%2C%20saya%20mau%20ke%20Cianjur%20hari%20ini." target="_blank" rel="noopener" class="btn-outline">Tanya via WhatsApp</a>
+                        </div>
+                    </div>
+
+                </article>
+
+                <aside class="article-sidebar">
+                    <div class="sidebar-card">
+                        <div class="card-title">Butuh travel hari ini?</div>
+                        <p>CS aktif 24 jam. Kalau urgent, langsung WhatsApp lebih cepat.</p>
+                        <a href="https://wa.me/6283141106274?text=Halo%20Putra%20Galuh%20Travel%2C%20saya%20butuh%20travel." target="_blank" rel="noopener" class="btn-side">
+                            <svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2z"/></svg>
+                            Chat Sekarang
+                        </a>
+                    </div>
+                    <div class="sidebar-card">
+                        <div class="card-title">Artikel lainnya</div>
+                        <ul class="sidebar-list">
+                            <li>
+                                <a href="artikel-jakarta.html">
+                                    <span class="mini-meta">Jakarta · ±4–5 jam</span>
+                                    Majalengka – Jakarta: kenapa banyak pelanggan pindah dari bus ke travel
+                                </a>
+                            </li>
+                            <li>
+                                <a href="artikel-bandung.html">
+                                    <span class="mini-meta">Bandung · ±2–3 jam</span>
+                                    Majalengka – Bandung: rute favorit untuk urusan kantor dan kuliah
+                                </a>
+                            </li>
+                            <li>
+                                <a href="artikel-sukabumi.html">
+                                    <span class="mini-meta">Sukabumi · ±5–6 jam</span>
+                                    Majalengka – Sukabumi: kenapa rute ini paling cocok pakai Elf atau Hiace
+                                </a>
+                            </li>
+                            <li>
+                                <a href="artikel-tips.html">
+                                    <span class="mini-meta">Tips · Penumpang baru</span>
+                                    Pertama kali pakai travel door to door? Ini yang perlu Anda tahu
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </aside>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="all-articles">
+        <div class="container">
+            <div class="section-head">
+                <div>
+                    <h2>Semua artikel</h2>
+                    <p>Delapan catatan dari perjalanan kami — rute, tips, dan pengalaman lapangan.</p>
+                </div>
+                <a href="blog.html" class="btn-more">
+                    Lihat daftar lengkap
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </a>
+            </div>
+            <div class="articles-grid">
+                <a href="artikel-jakarta.html" class="article-card">
+                    <div class="ac-thumb"><img src="artikel-jakarta.jpg" alt="Jakarta" loading="lazy"></div>
+                    <div class="ac-body"><div class="ac-meta">Rute · ±4–5 jam</div><h4>Majalengka – Jakarta: kenapa banyak pelanggan pindah dari bus ke travel</h4></div>
+                </a>
+                <a href="artikel-bandung.html" class="article-card">
+                    <div class="ac-thumb"><img src="artikel-bandung.jpg" alt="Bandung" loading="lazy"></div>
+                    <div class="ac-body"><div class="ac-meta">Rute · ±2–3 jam</div><h4>Majalengka – Bandung: rute favorit untuk urusan kantor dan kuliah</h4></div>
+                </a>
+                <a href="artikel-bekasi.html" class="article-card">
+                    <div class="ac-thumb"><img src="artikel-bekasi.jpg" alt="Bekasi" loading="lazy"></div>
+                    <div class="ac-body"><div class="ac-meta">Rute · ±5–6 jam</div><h4>Majalengka – Bekasi: pulang kampung tanpa drama ganti kendaraan</h4></div>
+                </a>
+                <a href="artikel-bogor.html" class="article-card">
+                    <div class="ac-thumb"><img src="artikel-bogor.jpg" alt="Bogor" loading="lazy"></div>
+                    <div class="ac-body"><div class="ac-meta">Rute · ±7–8 jam</div><h4>Perjalanan jauh ke Bogor: apa yang perlu disiapkan sebelum berangkat</h4></div>
+                </a>
+                <a href="artikel-bandara.html" class="article-card">
+                    <div class="ac-thumb"><img src="artikel-bandara.jpg" alt="Bandara" loading="lazy"></div>
+                    <div class="ac-body"><div class="ac-meta">Bandara · Kertajati · Soetta</div><h4>Antar jemput bandara: berapa jam sebelumnya sebaiknya berangkat?</h4></div>
+                </a>
+                <a href="artikel-tips.html" class="article-card">
+                    <div class="ac-thumb"><img src="artikel-tips.jpg" alt="Tips" loading="lazy"></div>
+                    <div class="ac-body"><div class="ac-meta">Tips · Penumpang baru</div><h4>Pertama kali pakai travel door to door? Ini yang perlu Anda tahu</h4></div>
+                </a>
+                <a href="artikel-cianjur.html" class="article-card current">
+                    <span class="current-badge">Sedang dibaca</span>
+                    <div class="ac-thumb"><img src="artikel-cianjur.jpg" alt="Cianjur" loading="lazy"></div>
+                    <div class="ac-body"><div class="ac-meta">Rute · ±1–2 jam</div><h4>Majalengka – Cianjur: rute singkat yang paling sering dipesan mendadak</h4></div>
+                </a>
+                <a href="artikel-sukabumi.html" class="article-card">
+                    <div class="ac-thumb"><img src="artikel-sukabumi.jpg" alt="Sukabumi" loading="lazy"></div>
+                    <div class="ac-body"><div class="ac-meta">Rute · ±5–6 jam</div><h4>Majalengka – Sukabumi: kenapa rute ini paling cocok pakai Elf atau Hiace</h4></div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 Putra Galuh Travel. Seluruh hak cipta dilindungi.</p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/6283141106274?text=Halo%20Putra%20Galuh%20Travel%2C%20saya%20ingin%20bertanya." class="whatsapp-float" target="_blank" rel="noopener" aria-label="Hubungi via WhatsApp">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.83 14.12c-.25.7-1.45 1.33-2.03 1.42-.52.08-1.18.12-1.9-.12-.44-.15-1-.32-1.71-.61-3.01-1.3-4.98-4.33-5.13-4.53-.15-.2-1.23-1.63-1.23-3.11 0-1.48.78-2.21 1.05-2.51.27-.3.6-.38.8-.38.2 0 .4 0 .58.01.19.01.44-.07.68.52.25.6.85 2.06.92 2.21.08.15.13.33.03.53-.1.2-.15.32-.3.5-.15.18-.32.4-.46.54-.15.15-.31.31-.13.61.18.3.79 1.31 1.7 2.12 1.17 1.04 2.15 1.37 2.46 1.52.3.15.48.13.66-.08.18-.2.76-.88.96-1.18.2-.3.4-.25.68-.15.28.1 1.77.83 2.07.98.3.15.5.23.58.35.08.13.08.73-.17 1.43z"/>
+        </svg>
+    </a>
+
+    <script>
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', function () {
+            if (window.scrollY > 60) header.classList.add('scrolled');
+            else header.classList.remove('scrolled');
+        });
+        (function () {
+            const hamburger = document.getElementById('hamburger');
+            const drawer = document.getElementById('mobileDrawer');
+            const overlay = document.getElementById('drawerOverlay');
+            const drawerClose = document.getElementById('drawerClose');
+            if (!hamburger || !drawer || !overlay) return;
+            function openDrawer() {
+                drawer.classList.add('open'); overlay.classList.add('open');
+                hamburger.classList.add('active');
+                hamburger.setAttribute('aria-expanded', 'true');
+                drawer.setAttribute('aria-hidden', 'false');
+                document.body.classList.add('drawer-open');
+            }
+            function closeDrawer() {
+                drawer.classList.remove('open'); overlay.classList.remove('open');
+                hamburger.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
+                drawer.setAttribute('aria-hidden', 'true');
+                document.body.classList.remove('drawer-open');
+            }
+            hamburger.addEventListener('click', function (e) {
+                e.stopPropagation();
+                drawer.classList.contains('open') ? closeDrawer() : openDrawer();
+            });
+            if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
+            overlay.addEventListener('click', closeDrawer);
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && drawer.classList.contains('open')) closeDrawer();
+            });
+            window.addEventListener('resize', function () {
+                if (window.innerWidth > 900 && drawer.classList.contains('open')) closeDrawer();
+            });
+            const submenuTriggers = drawer.querySelectorAll('.drawer-menu-item[data-submenu]');
+            submenuTriggers.forEach(function (trigger) {
+                trigger.addEventListener('click', function () {
+                    const targetId = trigger.getAttribute('data-submenu');
+                    const targetSubmenu = document.getElementById(targetId);
+                    if (!targetSubmenu) return;
+                    const isOpen = trigger.classList.contains('open');
+                    submenuTriggers.forEach(t => t.classList.remove('open'));
+                    drawer.querySelectorAll('.drawer-submenu').forEach(sm => sm.classList.remove('open'));
+                    if (!isOpen) {
+                        trigger.classList.add('open');
+                        targetSubmenu.classList.add('open');
+                    }
+                });
+            });
+            drawer.querySelectorAll('a').forEach(function (link) {
+                link.addEventListener('click', closeDrawer);
+            });
+        })();
+    </script>
+</body>
+</html>

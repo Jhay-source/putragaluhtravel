@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking | Putra Galuh Travel</title>
+    <meta name="description" content="Pesan perjalanan door to door Putra Galuh Travel. Isi form, sopir kami akan konfirmasi via WhatsApp.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #FFFFFF;
+            --bg-alt: #F5F8FC;
+            --bg-dark: #0F1F3D;
+
+            --ink: #0F1F3D;
+            --ink-soft: #344466;
+            --muted: #64748B;
+            --muted-2: #94A3B8;
+            --line: #E2E8F0;
+
+            --blue: #2563EB;
+            --blue-hover: #1D4ED8;
+            --blue-dark: #1E40AF;
+            --blue-light: #60A5FA;
+            --blue-soft: #EFF6FF;
+            --blue-line: #BFDBFE;
+
+            --green: #16A34A;
+            --green-soft: #DCFCE7;
+
+            --cream: #FFFFFF;
+            --cream-muted: rgba(255, 255, 255, 0.78);
+            --cream-muted-2: rgba(255, 255, 255, 0.5);
+
+            --ff-head: 'Fraunces', Georgia, serif;
+            --ff-body: 'Manrope', system-ui, -apple-system, sans-serif;
+
+            --radius: 12px;
+            --radius-lg: 18px;
+            --trans: all 0.25s ease;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--ff-body); background: var(--bg); color: var(--ink); line-height: 1.65; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+        body.drawer-open { overflow: hidden; }
+        a { text-decoration: none; color: inherit; }
+        img { max-width: 100%; height: auto; display: block; }
+        ul { list-style: none; }
+        .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+        ::selection { background: var(--blue); color: #FFFFFF; }
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: var(--bg-alt); }
+        ::-webkit-scrollbar-thumb { background: #C7D2E0; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--blue); }
+
+        /* HEADER */
+        .header { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; background: rgba(15, 31, 61, 0.96); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid rgba(37, 99, 235, 0.3); padding: 14px 0; transition: var(--trans); }
+        .header.scrolled { padding: 11px 0; background: rgba(255, 255, 255, 0.96); border-bottom-color: var(--line); }
+        .header .container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { display: flex; align-items: center; z-index: 1002; }
+        .logo img { height: 44px; width: auto; transition: var(--trans); }
+        .logo:hover img { opacity: 0.85; }
+        .nav-menu { display: flex; align-items: center; gap: 24px; }
+        .nav-menu li a { font-weight: 500; font-size: 0.9rem; color: rgba(255, 255, 255, 0.85); transition: var(--trans); position: relative; }
+        .nav-menu li a:hover, .nav-menu li a.active { color: var(--blue-light); }
+        .nav-menu li a.active::after { content: ''; position: absolute; left: 0; bottom: -6px; width: 100%; height: 2px; background: var(--blue); border-radius: 2px; }
+        .nav-menu li a.nav-cta { background: var(--blue); color: #FFFFFF; padding: 10px 22px; border-radius: 8px; font-weight: 700; font-size: 0.85rem; transition: var(--trans); }
+        .nav-menu li a.nav-cta:hover { background: var(--blue-light); }
+        .nav-menu li a.nav-cta.active::after { display: none; }
+        .header.scrolled .nav-menu li a { color: var(--ink-soft); }
+        .header.scrolled .nav-menu li a:hover, .header.scrolled .nav-menu li a.active { color: var(--blue); }
+        .header.scrolled .nav-menu li a.active::after { background: var(--blue); }
+        .header.scrolled .nav-menu li a.nav-cta { background: var(--blue); color: #FFFFFF; }
+        .header.scrolled .nav-menu li a.nav-cta:hover { background: var(--blue-hover); }
+
+        .hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 44px; height: 44px; background: transparent; border: 1px solid rgba(96, 165, 250, 0.5); border-radius: 10px; cursor: pointer; padding: 0 11px; z-index: 1002; transition: var(--trans); }
+        .hamburger span { display: block; height: 1.8px; width: 100%; background: var(--blue-light); border-radius: 2px; transition: var(--trans); }
+        .header.scrolled .hamburger { border-color: var(--line); }
+        .header.scrolled .hamburger span { background: var(--blue); }
+        .hamburger.active span:nth-child(1) { transform: translateY(6.8px) rotate(45deg); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: translateY(-6.8px) rotate(-45deg); }
+
+        /* DRAWER */
+        .drawer-overlay { position: fixed; inset: 0; background: rgba(15, 31, 61, 0.6); backdrop-filter: blur(2px); opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease; z-index: 1150; }
+        .drawer-overlay.open { opacity: 1; visibility: visible; }
+        .mobile-drawer { position: fixed; top: 0; left: 0; width: 78vw; max-width: 340px; height: 100vh; height: 100dvh; background: var(--bg); border-right: 1px solid var(--line); transform: translateX(-100%); transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1); z-index: 1200; display: flex; flex-direction: column; will-change: transform; }
+        .mobile-drawer.open { transform: translateX(0); }
+        .drawer-header { display: flex; justify-content: space-between; align-items: center; padding: 18px 20px; border-bottom: 1px solid var(--line); flex-shrink: 0; }
+        .drawer-logo img { height: 38px; width: auto; }
+        .drawer-close { width: 40px; height: 40px; background: transparent; border: 1px solid var(--line); border-radius: 10px; color: var(--ink); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: var(--trans); flex-shrink: 0; }
+        .drawer-close:hover { border-color: var(--blue); color: var(--blue); }
+        .drawer-close svg { width: 16px; height: 16px; stroke: currentColor; stroke-width: 2; }
+        .drawer-body { flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+        .drawer-menu { display: flex; flex-direction: column; }
+        .drawer-menu > li { border-bottom: 1px solid var(--line); }
+        .drawer-menu > li > a { display: flex; justify-content: space-between; align-items: center; padding: 15px 22px; color: var(--ink); font-size: 0.95rem; font-weight: 500; transition: var(--trans); min-height: 50px; }
+        .drawer-menu-item { display: flex; justify-content: space-between; align-items: center; padding: 15px 22px; color: var(--ink); font-size: 0.95rem; font-weight: 500; cursor: pointer; user-select: none; min-height: 50px; transition: var(--trans); }
+        .drawer-menu > li > a:hover, .drawer-menu-item:hover, .drawer-menu-item.open { color: var(--blue); background: var(--blue-soft); }
+        .drawer-menu-item .chevron { width: 14px; height: 14px; stroke: currentColor; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; transition: transform 0.3s ease; flex-shrink: 0; }
+        .drawer-menu-item.open .chevron { transform: rotate(180deg); }
+        .drawer-submenu { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; background: var(--bg-alt); }
+        .drawer-submenu.open { max-height: 600px; }
+        .drawer-submenu li { border-bottom: 1px solid rgba(0, 0, 0, 0.04); }
+        .drawer-submenu li:last-child { border-bottom: none; }
+        .drawer-submenu li a, .drawer-submenu li .submenu-static { display: block; padding: 11px 22px 11px 40px; color: var(--muted); font-size: 0.87rem; transition: var(--trans); }
+        .drawer-submenu li a:hover { color: var(--blue); padding-left: 44px; }
+        .drawer-submenu li .submenu-static { cursor: default; }
+        .drawer-footer { border-top: 1px solid var(--line); padding: 16px 20px 20px; flex-shrink: 0; }
+        .drawer-lang { display: flex; justify-content: space-between; align-items: center; padding: 10px 0 14px; color: var(--muted); font-size: 0.86rem; border-bottom: 1px solid var(--line); margin-bottom: 14px; }
+        .drawer-lang .lang-left { display: flex; align-items: center; gap: 8px; }
+        .drawer-lang .lang-left svg, .drawer-lang .lang-chevron { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 1.8; }
+        .drawer-contact-btn { display: flex; justify-content: center; align-items: center; gap: 8px; width: 100%; padding: 13px 20px; border: none; border-radius: 10px; color: #FFFFFF; background: var(--blue); font-weight: 600; font-size: 0.88rem; transition: var(--trans); font-family: var(--ff-body); cursor: pointer; }
+        .drawer-contact-btn:hover { background: var(--blue-hover); }
+        .drawer-contact-btn svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+
+        /* PAGE HERO */
+        .page-hero { padding: 148px 0 46px; background: var(--bg-alt); border-bottom: 1px solid var(--line); }
+        .page-hero h1 { font-family: var(--ff-head); font-size: 2.6rem; font-weight: 600; line-height: 1.15; letter-spacing: -1px; margin-bottom: 14px; color: var(--ink); }
+        .page-hero h1 em { font-style: italic; color: var(--blue); font-weight: 500; }
+        .page-hero p { color: var(--muted); font-size: 1rem; max-width: 580px; line-height: 1.7; }
+
+        /* BOOKING */
+        .booking { padding: 60px 0 100px; background: var(--bg); }
+        .booking-form { max-width: 780px; margin: 0 auto; }
+
+        .form-block { background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 32px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(15, 31, 61, 0.04); }
+        .form-block-head { display: flex; align-items: baseline; gap: 12px; padding-bottom: 20px; margin-bottom: 24px; border-bottom: 1px solid var(--line); }
+        .form-block-head .num { font-family: var(--ff-head); font-size: 1.6rem; font-weight: 600; color: var(--blue); line-height: 1; }
+        .form-block-head .title { font-family: var(--ff-head); font-size: 1.2rem; font-weight: 600; color: var(--ink); letter-spacing: -0.2px; }
+        .form-block-head .hint { font-size: 0.85rem; color: var(--muted); margin-left: auto; }
+
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+        .form-group { display: flex; flex-direction: column; gap: 7px; }
+        .form-group.full-width { grid-column: 1 / -1; }
+        .form-group label { font-weight: 600; font-size: 0.84rem; color: var(--ink); letter-spacing: 0.1px; }
+        .form-group label .req { color: var(--blue); margin-left: 2px; }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 12px 15px;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            font-size: 0.94rem;
+            font-family: var(--ff-body);
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            background: var(--bg);
+            color: var(--ink);
+            outline: none;
+            width: 100%;
+        }
+        .form-group input::placeholder,
+        .form-group textarea::placeholder { color: var(--muted-2); }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--blue);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.10);
+        }
+        .form-group textarea { resize: vertical; min-height: 90px; }
+        .form-group select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2364748B' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            padding-right: 38px;
+        }
+        .form-group input[type="date"]::-webkit-calendar-picker-indicator { cursor: pointer; opacity: 0.55; }
+        .form-group input.input-lainnya { display: none; border-style: dashed; border-color: var(--blue); margin-top: 8px; }
+
+        /* VALIDASI */
+        .form-group input.error,
+        .form-group select.error,
+        .form-group textarea.error {
+            border-color: #DC2626;
+            background: #FEF2F2;
+        }
+        .field-error-msg { display: none; color: #DC2626; font-size: 0.8rem; font-weight: 500; margin-top: 2px; }
+        .field-error-msg.show { display: block; }
+
+        /* LOKASI BOX */
+        .location-box { border: 1px dashed var(--line); border-radius: 10px; padding: 18px; background: var(--bg-alt); transition: var(--trans); }
+        .location-box.location-error-state { border-color: #DC2626; background: #FEF2F2; }
+        .location-box.location-success-state { border-color: var(--green); border-style: solid; background: #F0FDF4; }
+        .location-desc { font-size: 0.85rem; color: var(--ink-soft); margin-bottom: 12px; line-height: 1.6; }
+
+        .btn-location {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            width: 100%;
+            padding: 13px 20px;
+            background: var(--blue);
+            color: #FFFFFF;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            font-family: var(--ff-body);
+            cursor: pointer;
+            transition: var(--trans);
+        }
+        .btn-location:hover:not(:disabled) { background: var(--blue-hover); }
+        .btn-location:disabled { opacity: 0.7; cursor: wait; }
+        .btn-location svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+        .location-placeholder { text-align: center; color: var(--muted); font-size: 0.84rem; margin-top: 12px; }
+        .location-preview-inner { margin-top: 14px; border-radius: 10px; overflow: hidden; border: 1px solid var(--blue-line); background: var(--bg); }
+        .location-preview-inner iframe { width: 100%; height: 190px; border: 0; display: block; }
+        .location-info { padding: 12px 14px; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; align-items: center; background: var(--bg-alt); border-top: 1px solid var(--blue-line); }
+        .location-badge { display: inline-flex; align-items: center; gap: 5px; background: var(--green-soft); color: #166534; border: 1px solid #86EFAC; padding: 4px 11px; border-radius: 50px; font-size: 0.76rem; font-weight: 600; }
+        .location-coords { font-size: 0.76rem; color: var(--ink-soft); font-family: 'Courier New', monospace; font-weight: 600; background: var(--bg); padding: 4px 10px; border-radius: 6px; border: 1px solid var(--line); }
+        .btn-retry { background: transparent; color: var(--blue); border: 1px solid var(--blue); padding: 4px 12px; border-radius: 6px; font-size: 0.76rem; font-weight: 600; font-family: var(--ff-body); cursor: pointer; transition: var(--trans); }
+        .btn-retry:hover { background: var(--blue); color: #FFFFFF; }
+        .location-error-msg { text-align: center; color: #DC2626; font-size: 0.84rem; font-weight: 500; padding: 8px 4px 4px; line-height: 1.55; }
+
+        /* SUBMIT */
+        .submit-wrap { display: flex; flex-direction: column; gap: 12px; align-items: center; margin-top: 8px; }
+        .btn-submit {
+            background: var(--blue);
+            color: #FFFFFF;
+            padding: 15px 40px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.96rem;
+            border: none;
+            cursor: pointer;
+            transition: var(--trans);
+            width: 100%;
+            font-family: var(--ff-body);
+            letter-spacing: 0.3px;
+        }
+        .btn-submit:hover { background: var(--blue-hover); transform: translateY(-1px); }
+        .submit-note { font-size: 0.82rem; color: var(--muted); text-align: center; line-height: 1.6; max-width: 500px; }
+        .submit-note a { color: var(--blue); font-weight: 600; border-bottom: 1px solid var(--blue-line); }
+        .submit-note a:hover { border-bottom-color: var(--blue); }
+
+        /* KONFIRMASI PANEL */
+        .confirm-panel {
+            display: none;
+            background: var(--bg);
+            border: 1px solid var(--line);
+            border-radius: var(--radius-lg);
+            padding: 36px 32px;
+            max-width: 640px;
+            margin: 0 auto;
+            text-align: center;
+            box-shadow: 0 1px 3px rgba(15, 31, 61, 0.04);
+        }
+        .confirm-panel.show { display: block; }
+        .confirm-icon { width: 52px; height: 52px; margin: 0 auto 18px; border-radius: 50%; background: var(--green-soft); display: flex; align-items: center; justify-content: center; }
+        .confirm-icon svg { width: 26px; height: 26px; stroke: var(--green); fill: none; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+        .confirm-panel h2 { font-family: var(--ff-head); font-size: 1.5rem; font-weight: 600; color: var(--ink); margin-bottom: 8px; letter-spacing: -0.3px; }
+        .confirm-panel .confirm-sub { color: var(--muted); font-size: 0.94rem; margin-bottom: 24px; line-height: 1.65; }
+
+        .confirm-summary { background: var(--bg-alt); border: 1px solid var(--line); border-radius: 10px; padding: 18px 20px; text-align: left; margin-bottom: 24px; }
+        .confirm-row { display: flex; justify-content: space-between; gap: 16px; padding: 8px 0; font-size: 0.9rem; border-bottom: 1px dashed var(--line); }
+        .confirm-row:last-child { border-bottom: none; }
+        .confirm-row .k { color: var(--muted); flex-shrink: 0; }
+        .confirm-row .v { color: var(--ink); font-weight: 600; text-align: right; word-break: break-word; }
+
+        .confirm-actions { display: flex; flex-direction: column; gap: 10px; }
+        .btn-wa {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 15px 28px;
+            background: var(--blue);
+            color: #FFFFFF;
+            border: none;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            font-family: var(--ff-body);
+            cursor: pointer;
+            transition: var(--trans);
+            text-decoration: none;
+        }
+        .btn-wa:hover { background: var(--blue-hover); transform: translateY(-1px); }
+        .btn-wa svg { width: 18px; height: 18px; fill: currentColor; }
+
+        .btn-edit { background: transparent; color: var(--ink-soft); border: 1px solid var(--line); border-radius: 10px; padding: 12px 24px; font-weight: 600; font-size: 0.88rem; font-family: var(--ff-body); cursor: pointer; transition: var(--trans); }
+        .btn-edit:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-soft); }
+
+        /* FOOTER */
+        .footer { background: var(--bg-dark); color: var(--cream-muted); padding: 34px 0 26px; border-top: 1px solid rgba(37, 99, 235, 0.2); }
+        .footer-bottom { text-align: center; font-size: 0.84rem; color: var(--cream-muted-2); }
+
+        /* WHATSAPP FLOAT */
+        .whatsapp-float { position: fixed; bottom: 22px; right: 22px; z-index: 999; width: 56px; height: 56px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 24px rgba(37, 211, 102, 0.35); transition: var(--trans); }
+        .whatsapp-float:hover { transform: scale(1.08); box-shadow: 0 12px 32px rgba(37, 211, 102, 0.5); }
+        .whatsapp-float svg { width: 28px; height: 28px; fill: #fff; }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .nav-menu { gap: 20px; }
+        }
+        @media (max-width: 900px) {
+            .hamburger { display: flex; }
+            .nav-menu { display: none; }
+            .page-hero { padding: 130px 0 40px; }
+            .page-hero h1 { font-size: 2rem; }
+            .form-grid { grid-template-columns: 1fr; }
+            .form-group.full-width { grid-column: auto; }
+            .form-block { padding: 26px 22px; }
+            .form-block-head { flex-wrap: wrap; }
+            .form-block-head .hint { width: 100%; margin-left: 0; margin-top: 4px; }
+        }
+        @media (min-width: 901px) { .mobile-drawer, .drawer-overlay { display: none !important; } }
+        @media (max-width: 560px) {
+            .container { padding: 0 18px; }
+            .logo img { height: 38px; }
+            .hamburger { width: 40px; height: 40px; padding: 0 10px; }
+            .mobile-drawer { width: 82vw; max-width: 320px; }
+            .page-hero { padding: 118px 0 34px; }
+            .page-hero h1 { font-size: 1.7rem; }
+            .page-hero p { font-size: 0.9rem; }
+            .booking { padding: 40px 0 70px; }
+            .form-block { padding: 22px 18px; border-radius: var(--radius); }
+            .form-block-head .num { font-size: 1.35rem; }
+            .form-block-head .title { font-size: 1.05rem; }
+            .confirm-panel { padding: 26px 20px; }
+            .confirm-panel h2 { font-size: 1.25rem; }
+            .location-preview-inner iframe { height: 160px; }
+            .whatsapp-float { width: 52px; height: 52px; bottom: 16px; right: 16px; }
+            .whatsapp-float svg { width: 26px; height: 26px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header" id="header">
+        <div class="container">
+            <a href="index.html" class="logo"><img src="icon.jpg" alt="Putra Galuh Travel"></a>
+            <nav>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html">Beranda</a></li>
+                    <li><a href="armada.html">Armada</a></li>
+                    <li><a href="layanan.html">Layanan</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="syarat-ketentuan.html">Syarat &amp; Ketentuan</a></li>
+                    <li><a href="booking.html" class="nav-cta active">Booking</a></li>
+                </ul>
+            </nav>
+            <button class="hamburger" id="hamburger" aria-label="Buka menu"><span></span><span></span><span></span></button>
+        </div>
+    </header>
+
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+
+    <aside class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
+        <div class="drawer-header">
+            <a href="index.html" class="drawer-logo"><img src="icon.jpg" alt="Putra Galuh Travel"></a>
+            <button class="drawer-close" id="drawerClose" aria-label="Tutup menu">
+                <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+        </div>
+        <div class="drawer-body">
+            <ul class="drawer-menu">
+                <li><a href="index.html">Beranda</a></li>
+                <li>
+                    <div class="drawer-menu-item" data-submenu="submenu-tentang">
+                        <span>Tentang Kami</span>
+                        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                    </div>
+                    <ul class="drawer-submenu" id="submenu-tentang">
+                        <li><a href="index.html#tentang">Profil</a></li>
+                        <li><a href="index.html#testimoni">Testimoni</a></li>
+                        <li><a href="index.html#faq">FAQ</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <div class="drawer-menu-item" data-submenu="submenu-layanan">
+                        <span>Layanan</span>
+                        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                    </div>
+                    <ul class="drawer-submenu" id="submenu-layanan">
+                        <li><a href="layanan.html#travel-reguler">Travel Reguler</a></li>
+                        <li><a href="layanan.html#carter">Carter Mobil + Sopir</a></li>
+                        <li><a href="layanan.html#bandara">Antar Jemput Bandara</a></li>
+                        <li><a href="layanan.html#pariwisata">Pariwisata</a></li>
+                        <li><a href="layanan.html#ziarah">Ziarah</a></li>
+                        <li><a href="layanan.html#paket">Antar Paket</a></li>
+                    </ul>
+                </li>
+                <li><a href="armada.html">Armada Kami</a></li>
+                <li><a href="booking.html">Pesan Tiket</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="index.html#kontak">Kontak</a></li>
+                <li><a href="syarat-ketentuan.html">Syarat &amp; Ketentuan</a></li>
+            </ul>
+        </div>
+        <div class="drawer-footer">
+            <div class="drawer-lang">
+                <span class="lang-left">
+                    <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="9"/><line x1="3" y1="12" x2="21" y2="12"/>
+                        <path d="M12 3a15 15 0 0 1 4 9 15 15 0 0 1-4 9 15 15 0 0 1-4-9 15 15 0 0 1 4-9z"/>
+                    </svg>
+                    Indonesia
+                </span>
+                <svg class="lang-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+            <a href="https://wa.me/6283141106274?text=Halo%20Putra%20Galuh%20Travel%2C%20saya%20ingin%20bertanya." target="_blank" rel="noopener" class="drawer-contact-btn">
+                Hubungi Kami
+                <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+            </a>
+        </div>
+    </aside>
+
+    <section class="page-hero">
+        <div class="container">
+            <h1>Isi form, <em>sopir datang</em> ke rumah</h1>
+            <p id="sectionDesc">Kami balas via WhatsApp dalam 5–15 menit untuk konfirmasi jadwal dan titik jemput.</p>
+        </div>
+    </section>
+
+    <section class="booking">
+        <div class="container">
+
+            <form class="booking-form" id="bookingForm" onsubmit="handleBooking(event)" novalidate>
+
+                <div class="form-block">
+                    <div class="form-block-head">
+                        <span class="num">01</span>
+                        <span class="title">Data Anda</span>
+                        <span class="hint">Kami butuh untuk konfirmasi</span>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Nama lengkap <span class="req">*</span></label>
+                            <input type="text" id="nama" placeholder="Nama lengkap Anda" required autocomplete="name">
+                            <div class="field-error-msg" id="namaError"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>Nomor WhatsApp <span class="req">*</span></label>
+                            <input type="tel" id="whatsapp" placeholder="Contoh: 08123456789" required pattern="^\+?[0-9]{10,15}$" inputmode="tel" autocomplete="tel">
+                            <div class="field-error-msg" id="whatsappError"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-block">
+                    <div class="form-block-head">
+                        <span class="num">02</span>
+                        <span class="title">Detail perjalanan</span>
+                        <span class="hint">Rute dan jadwal</span>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Jenis layanan <span class="req">*</span></label>
+                            <select id="layanan" required>
+                                <option value="">-- Pilih layanan --</option>
+                                <option value="Travel Reguler">Travel Reguler</option>
+                                <option value="Carter Mobil + Sopir">Carter Mobil + Sopir</option>
+                                <option value="Antar Jemput Bandara">Antar Jemput Bandara</option>
+                                <option value="Pariwisata">Pariwisata</option>
+                                <option value="Ziarah">Ziarah</option>
+                                <option value="Antar Paket">Antar Paket</option>
+                            </select>
+                            <div class="field-error-msg" id="layananError"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Jumlah penumpang <span class="req">*</span></label>
+                            <select id="penumpang" required>
+                                <option value="">-- Pilih jumlah --</option>
+                                <option value="1">1 orang</option>
+                                <option value="2">2 orang</option>
+                                <option value="3">3 orang</option>
+                                <option value="4">4 orang</option>
+                                <option value="5">5 orang</option>
+                                <option value="6">6 orang</option>
+                                <option value="7+">7 atau lebih (rombongan)</option>
+                            </select>
+                            <div class="field-error-msg" id="penumpangError"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Kota asal <span class="req">*</span></label>
+                            <select id="asal" required>
+                                <option value="">-- Pilih kota asal --</option>
+                                <option value="Majalengka">Majalengka</option>
+                                <option value="Cirebon">Cirebon</option>
+                                <option value="Jakarta">Jakarta</option>
+                                <option value="Bandung">Bandung</option>
+                                <option value="Cianjur">Cianjur</option>
+                                <option value="Sukabumi">Sukabumi</option>
+                                <option value="Bekasi">Bekasi</option>
+                                <option value="Bogor">Bogor</option>
+                                <option value="Lainnya">Lainnya</option>
+                            </select>
+                            <input type="text" id="asalLainnya" class="input-lainnya" placeholder="Tulis kota asal Anda">
+                            <div class="field-error-msg" id="asalError"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Kota tujuan <span class="req">*</span></label>
+                            <select id="tujuan" required>
+                                <option value="">-- Pilih kota tujuan --</option>
+                                <option value="Jakarta">Jakarta</option>
+                                <option value="Bandung">Bandung</option>
+                                <option value="Cianjur">Cianjur</option>
+                                <option value="Sukabumi">Sukabumi</option>
+                                <option value="Bekasi">Bekasi</option>
+                                <option value="Bogor">Bogor</option>
+                                <option value="Soekarno-Hatta Airport">Bandara Soekarno-Hatta</option>
+                                <option value="Lainnya">Lainnya</option>
+                            </select>
+                            <input type="text" id="tujuanLainnya" class="input-lainnya" placeholder="Tulis kota tujuan Anda">
+                            <div class="field-error-msg" id="tujuanError"></div>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label>Tanggal keberangkatan <span class="req">*</span></label>
+                            <input type="date" id="tanggal" required>
+                            <div class="field-error-msg" id="tanggalError"></div>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label>Titik penjemputan <span class="req">*</span></label>
+                            <input type="hidden" id="alamatJemput" required>
+                            <div class="location-box" id="locationBox">
+                                <p class="location-desc">Sopir akan menjemput sesuai titik yang Anda kirim. Pastikan lokasi akurat agar tidak salah alamat.</p>
+                                <button type="button" class="btn-location" id="btnLocation" onclick="getLocation()">
+                                    <svg viewBox="0 0 24 24">
+                                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                        <circle cx="12" cy="10" r="3"/>
+                                    </svg>
+                                    Kirim lokasi saya sekarang
+                                </button>
+                                <div class="location-preview" id="locationPreview">
+                                    <p class="location-placeholder">Lokasi belum diambil</p>
+                                </div>
+                            </div>
+                            <div class="field-error-msg" id="alamatJemputError"></div>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label>Catatan tambahan <span style="color: var(--muted); font-weight: 400;">(opsional)</span></label>
+                            <textarea id="catatan" placeholder="Contoh: bawa 3 koper besar, ada lansia, butuh kursi bayi, dll."></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="submit-wrap">
+                    <button type="submit" class="btn-submit">Kirim booking</button>
+                    <p class="submit-note">
+                        Kami balas dalam 5–15 menit. Jika urgent, telepon langsung
+                        <a href="tel:+6283141106274">0831-4110-6274</a>.
+                    </p>
+                </div>
+            </form>
+
+            <div class="confirm-panel" id="confirmPanel">
+                <div class="confirm-icon">
+                    <svg viewBox="0 0 24 24">
+                        <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                </div>
+                <h2>Booking siap dikirim</h2>
+                <p class="confirm-sub">
+                    Cek ringkasan di bawah. Jika sudah benar, kirim lewat WhatsApp agar kami bisa langsung proses.
+                </p>
+
+                <div class="confirm-summary" id="confirmSummary"></div>
+
+                <div class="confirm-actions">
+                    <a href="#" id="btnSendWA" target="_blank" rel="noopener" class="btn-wa">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.83 14.12c-.25.7-1.45 1.33-2.03 1.42-.52.08-1.18.12-1.9-.12-.44-.15-1-.32-1.71-.61-3.01-1.3-4.98-4.33-5.13-4.53-.15-.2-1.23-1.63-1.23-3.11 0-1.48.78-2.21 1.05-2.51.27-.3.6-.38.8-.38.2 0 .4 0 .58.01.19.01.44-.07.68.52.25.6.85 2.06.92 2.21.08.15.13.33.03.53-.1.2-.15.32-.3.5-.15.18-.32.4-.46.54-.15.15-.31.31-.13.61.18.3.79 1.31 1.7 2.12 1.17 1.04 2.15 1.37 2.46 1.52.3.15.48.13.66-.08.18-.2.76-.88.96-1.18.2-.3.4-.25.68-.15.28.1 1.77.83 2.07.98.3.15.5.23.58.35.08.13.08.73-.17 1.43z"/>
+                        </svg>
+                        Buka WhatsApp
+                    </a>
+                    <button type="button" class="btn-edit" onclick="editBooking()">Ubah pesanan</button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 Putra Galuh Travel. Seluruh hak cipta dilindungi.</p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/6283141106274?text=Halo%20Putra%20Galuh%20Travel%2C%20saya%20ingin%20bertanya." class="whatsapp-float" target="_blank" rel="noopener" aria-label="Hubungi via WhatsApp">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.83 14.12c-.25.7-1.45 1.33-2.03 1.42-.52.08-1.18.12-1.9-.12-.44-.15-1-.32-1.71-.61-3.01-1.3-4.98-4.33-5.13-4.53-.15-.2-1.23-1.63-1.23-3.11 0-1.48.78-2.21 1.05-2.51.27-.3.6-.38.8-.38.2 0 .4 0 .58.01.19.01.44-.07.68.52.25.6.85 2.06.92 2.21.08.15.13.33.03.53-.1.2-.15.32-.3.5-.15.18-.32.4-.46.54-.15.15-.31.31-.13.61.18.3.79 1.31 1.7 2.12 1.17 1.04 2.15 1.37 2.46 1.52.3.15.48.13.66-.08.18-.2.76-.88.96-1.18.2-.3.4-.25.68-.15.28.1 1.77.83 2.07.98.3.15.5.23.58.35.08.13.08.73-.17 1.43z"/>
+        </svg>
+    </a>
+
+    <script>
+        const header = document.getElementById('header');
+
+        window.addEventListener('scroll', function () {
+            if (window.scrollY > 60) header.classList.add('scrolled');
+            else header.classList.remove('scrolled');
+        });
+
+        /* ============ AUTO-ISI JENIS LAYANAN DARI URL PARAMETER ============ */
+        (function autoFillLayananFromURL() {
+            const params = new URLSearchParams(window.location.search);
+            const layananParam = params.get('layanan');
+            if (!layananParam) return;
+
+            // Mapping slug URL → label option di <select id="layanan">
+            const mapping = {
+                'travel-reguler': 'Travel Reguler',
+                'carter': 'Carter Mobil + Sopir',
+                'bandara': 'Antar Jemput Bandara',
+                'pariwisata': 'Pariwisata',
+                'ziarah': 'Ziarah',
+                'paket': 'Antar Paket'
+            };
+
+            const labelLayanan = mapping[layananParam] || layananParam;
+            const selectLayanan = document.getElementById('layanan');
+
+            if (!selectLayanan) return;
+
+            // Cari option yang value-nya cocok (case-insensitive & trim)
+            let matched = false;
+            for (const opt of selectLayanan.options) {
+                if (opt.value.trim().toLowerCase() === labelLayanan.trim().toLowerCase()) {
+                    selectLayanan.value = opt.value;
+                    matched = true;
+                    break;
+                }
+            }
+
+            // Kalau tidak ketemu, coba cocokkan berdasarkan kata kunci
+            if (!matched) {
+                for (const opt of selectLayanan.options) {
+                    if (opt.value.toLowerCase().includes(layananParam.replace(/-/g, ' '))) {
+                        selectLayanan.value = opt.value;
+                        matched = true;
+                        break;
+                    }
+                }
+            }
+
+            // Update teks deskripsi di hero (opsional, biar lebih kontekstual)
+            const desc = document.getElementById('sectionDesc');
+            if (desc && matched) {
+                desc.innerHTML = 'Anda memilih layanan <strong>' + selectLayanan.value + '</strong>. Lengkapi detail perjalanan di bawah, kami balas via WhatsApp dalam 5–15 menit.';
+            }
+
+            // Scroll ke section form setelah halaman load
+            if (matched) {
+                window.addEventListener('load', function () {
+                    const bookingSection = document.querySelector('.booking');
+                    if (bookingSection) {
+                        setTimeout(function () {
+                            const offset = header.classList.contains('scrolled') ? 70 : 80;
+                            window.scrollTo({
+                                top: bookingSection.offsetTop - offset,
+                                behavior: 'smooth'
+                            });
+                        }, 200);
+                    }
+                });
+            }
+        })();
+        /* ============ END AUTO-ISI ============ */
+
+        function showFieldError(fieldId, message) {
+            const field = document.getElementById(fieldId);
+            const errorEl = document.getElementById(fieldId + 'Error');
+            if (field) field.classList.add('error');
+            if (errorEl) {
+                errorEl.textContent = message;
+                errorEl.classList.add('show');
+            }
+        }
+
+        function clearFieldError(fieldId) {
+            const field = document.getElementById(fieldId);
+            const errorEl = document.getElementById(fieldId + 'Error');
+            if (field) field.classList.remove('error');
+            if (errorEl) {
+                errorEl.textContent = '';
+                errorEl.classList.remove('show');
+            }
+        }
+
+        function isValidPhone(value) {
+            return /^\+?[0-9]{10,15}$/.test(value.trim());
+        }
+
+        function isValidName(value) {
+            return value.trim().length >= 3;
+        }
+
+        function resetLocationView() {
+            const btn = document.getElementById('btnLocation');
+            const preview = document.getElementById('locationPreview');
+            const hiddenInput = document.getElementById('alamatJemput');
+            const locationBox = document.getElementById('locationBox');
+
+            if (preview) preview.innerHTML = '<p class="location-placeholder">Lokasi belum diambil</p>';
+            if (btn) {
+                btn.style.display = '';
+                btn.disabled = false;
+                btn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Kirim lokasi saya sekarang';
+            }
+            if (hiddenInput) hiddenInput.value = '';
+            if (locationBox) locationBox.classList.remove('location-error-state', 'location-success-state');
+            clearFieldError('alamatJemput');
+        }
+
+        function getLocation() {
+            const btn = document.getElementById('btnLocation');
+            const preview = document.getElementById('locationPreview');
+            const hiddenInput = document.getElementById('alamatJemput');
+            const locationBox = document.getElementById('locationBox');
+
+            if (!navigator.geolocation) {
+                preview.innerHTML = '<p class="location-error-msg">Browser Anda tidak mendukung fitur lokasi. Gunakan Chrome, Safari, atau Firefox terbaru.</p>';
+                locationBox.classList.add('location-error-state');
+                return;
+            }
+
+            btn.disabled = true;
+            btn.textContent = 'Mengambil lokasi…';
+            locationBox.classList.remove('location-error-state', 'location-success-state');
+
+            navigator.geolocation.getCurrentPosition(
+                function (position) {
+                    const lat = position.coords.latitude;
+                    const lng = position.coords.longitude;
+                    const accuracy = position.coords.accuracy;
+                    const mapsLink = `https://www.google.com/maps?q=${lat},${lng}`;
+                    const mapsEmbed = `https://maps.google.com/maps?q=${lat},${lng}&z=17&output=embed`;
+
+                    hiddenInput.value = mapsLink;
+
+                    preview.innerHTML = `
+                        <div class="location-preview-inner">
+                            <iframe src="${mapsEmbed}" title="Lokasi penjemputan" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            <div class="location-info">
+                                <span class="location-badge">Lokasi terdeteksi</span>
+                                <span class="location-coords">${lat.toFixed(6)}, ${lng.toFixed(6)}</span>
+                                <span class="location-coords">± ${Math.round(accuracy)} m</span>
+                                <button type="button" class="btn-retry" onclick="resetLocationView()">Ambil ulang</button>
+                            </div>
+                        </div>
+                    `;
+
+                    btn.style.display = 'none';
+                    locationBox.classList.add('location-success-state');
+                    locationBox.classList.remove('location-error-state');
+                    clearFieldError('alamatJemput');
+                },
+                function (error) {
+                    let msg = 'Gagal mengambil lokasi.';
+                    if (error.code === 1) msg = 'Akses lokasi ditolak. Izinkan akses lokasi di pengaturan browser, lalu coba lagi.';
+                    else if (error.code === 2) msg = 'Lokasi tidak tersedia. Pastikan GPS aktif.';
+                    else if (error.code === 3) msg = 'Waktu pengambilan habis. Coba lagi.';
+
+                    preview.innerHTML = `<p class="location-error-msg">${msg}</p>`;
+                    btn.disabled = false;
+                    btn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Coba ambil lokasi lagi';
+                    locationBox.classList.add('location-error-state');
+                },
+                { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+            );
+        }
+
+        function validateAllFields() {
+            let isValid = true;
+            let firstError = null;
+
+            const nama = document.getElementById('nama').value;
+            if (!nama.trim()) {
+                showFieldError('nama', 'Nama wajib diisi');
+                isValid = false; if (!firstError) firstError = 'nama';
+            } else if (!isValidName(nama)) {
+                showFieldError('nama', 'Nama minimal 3 karakter');
+                isValid = false; if (!firstError) firstError = 'nama';
+            } else clearFieldError('nama');
+
+            const whatsapp = document.getElementById('whatsapp').value;
+            if (!whatsapp.trim()) {
+                showFieldError('whatsapp', 'Nomor WhatsApp wajib diisi');
+                isValid = false; if (!firstError) firstError = 'whatsapp';
+            } else if (!isValidPhone(whatsapp)) {
+                showFieldError('whatsapp', 'Format nomor tidak valid. Contoh: 08123456789');
+                isValid = false; if (!firstError) firstError = 'whatsapp';
+            } else clearFieldError('whatsapp');
+
+            const layanan = document.getElementById('layanan').value;
+            if (!layanan) {
+                showFieldError('layanan', 'Pilih jenis layanan');
+                isValid = false; if (!firstError) firstError = 'layanan';
+            } else clearFieldError('layanan');
+
+            const penumpang = document.getElementById('penumpang').value;
+            if (!penumpang) {
+                showFieldError('penumpang', 'Pilih jumlah penumpang');
+                isValid = false; if (!firstError) firstError = 'penumpang';
+            } else clearFieldError('penumpang');
+
+            const asal = document.getElementById('asal').value;
+            const asalLainnya = document.getElementById('asalLainnya');
+            if (!asal) {
+                showFieldError('asal', 'Pilih kota asal');
+                isValid = false; if (!firstError) firstError = 'asal';
+            } else if (asal === 'Lainnya' && !asalLainnya.value.trim()) {
+                showFieldError('asal', 'Tulis kota asal Anda');
+                isValid = false; if (!firstError) firstError = 'asalLainnya';
+            } else clearFieldError('asal');
+
+            const tujuan = document.getElementById('tujuan').value;
+            const tujuanLainnya = document.getElementById('tujuanLainnya');
+            if (!tujuan) {
+                showFieldError('tujuan', 'Pilih kota tujuan');
+                isValid = false; if (!firstError) firstError = 'tujuan';
+            } else if (tujuan === 'Lainnya' && !tujuanLainnya.value.trim()) {
+                showFieldError('tujuan', 'Tulis kota tujuan Anda');
+                isValid = false; if (!firstError) firstError = 'tujuanLainnya';
+            } else clearFieldError('tujuan');
+
+            const tanggal = document.getElementById('tanggal').value;
+            if (!tanggal) {
+                showFieldError('tanggal', 'Pilih tanggal keberangkatan');
+                isValid = false; if (!firstError) firstError = 'tanggal';
+            } else clearFieldError('tanggal');
+
+            const alamatJemput = document.getElementById('alamatJemput').value;
+            if (!alamatJemput || !alamatJemput.trim()) {
+                showFieldError('alamatJemput', 'Lokasi penjemputan belum diambil. Klik tombol "Kirim lokasi saya sekarang".');
+                isValid = false; if (!firstError) firstError = 'alamatJemput';
+                const locBox = document.getElementById('locationBox');
+                if (locBox) locBox.classList.add('location-error-state');
+            } else clearFieldError('alamatJemput');
+
+            return { valid: isValid, firstError: firstError };
+        }
+
+        function bindRealtimeValidation() {
+            const fields = ['nama', 'whatsapp', 'asal', 'layanan', 'tujuan', 'tanggal', 'penumpang'];
+            fields.forEach(function (id) {
+                const el = document.getElementById(id);
+                if (!el) return;
+                const evt = (el.tagName === 'SELECT' || el.type === 'date') ? 'change' : 'input';
+                el.addEventListener(evt, function () {
+                    if (id === 'nama') {
+                        if (!el.value.trim()) showFieldError('nama', 'Nama wajib diisi');
+                        else if (!isValidName(el.value)) showFieldError('nama', 'Nama minimal 3 karakter');
+                        else clearFieldError('nama');
+                    } else if (id === 'whatsapp') {
+                        if (!el.value.trim()) showFieldError('whatsapp', 'Nomor WhatsApp wajib diisi');
+                        else if (!isValidPhone(el.value)) showFieldError('whatsapp', 'Format nomor tidak valid. Contoh: 08123456789');
+                        else clearFieldError('whatsapp');
+                    } else if (id === 'asal') {
+                        if (!el.value) showFieldError('asal', 'Pilih kota asal');
+                        else clearFieldError('asal');
+                    } else if (id === 'tujuan') {
+                        if (!el.value) showFieldError('tujuan', 'Pilih kota tujuan');
+                        else clearFieldError('tujuan');
+                    } else if (id === 'layanan') {
+                        if (!el.value) showFieldError('layanan', 'Pilih jenis layanan');
+                        else clearFieldError('layanan');
+                    } else if (id === 'tanggal') {
+                        if (!el.value) showFieldError('tanggal', 'Pilih tanggal keberangkatan');
+                        else clearFieldError('tanggal');
+                    } else if (id === 'penumpang') {
+                        if (!el.value) showFieldError('penumpang', 'Pilih jumlah penumpang');
+                        else clearFieldError('penumpang');
+                    }
+                });
+                el.addEventListener('blur', function () {
+                    if (evt === 'change') return;
+                    el.dispatchEvent(new Event(evt));
+                });
+            });
+        }
+
+        function formatTanggal(dateStr) {
+            if (!dateStr) return '';
+            const d = new Date(dateStr + 'T00:00:00');
+            const bulan = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+            return `${d.getDate()} ${bulan[d.getMonth()]} ${d.getFullYear()}`;
+        }
+
+        function getAsalValue() {
+            const asal = document.getElementById('asal').value;
+            if (asal === 'Lainnya') return document.getElementById('asalLainnya').value.trim();
+            return asal;
+        }
+
+        function getTujuanValue() {
+            const tujuan = document.getElementById('tujuan').value;
+            if (tujuan === 'Lainnya') return document.getElementById('tujuanLainnya').value.trim();
+            return tujuan;
+        }
+
+        function handleBooking(event) {
+            event.preventDefault();
+
+            const validation = validateAllFields();
+            if (!validation.valid) {
+                const firstErr = document.getElementById(validation.firstError);
+                if (firstErr) {
+                    firstErr.focus();
+                    firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+                if (validation.firstError === 'alamatJemput') {
+                    const locBox = document.getElementById('locationBox');
+                    if (locBox) locBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+                return false;
+            }
+
+            const nama = document.getElementById('nama').value.trim();
+            const whatsapp = document.getElementById('whatsapp').value.trim();
+            const layanan = document.getElementById('layanan').value;
+            const penumpang = document.getElementById('penumpang').value;
+            const asal = getAsalValue();
+            const tujuan = getTujuanValue();
+            const tanggalRaw = document.getElementById('tanggal').value;
+            const tanggal = formatTanggal(tanggalRaw);
+            const lokasiJemput = document.getElementById('alamatJemput').value;
+            const catatan = document.getElementById('catatan').value.trim();
+
+            const pesan = `*BOOKING PUTRA GALUH TRAVEL*%0A%0A` +
+                `*Nama:* ${encodeURIComponent(nama)}%0A` +
+                `*WhatsApp:* ${encodeURIComponent(whatsapp)}%0A` +
+                `*Layanan:* ${encodeURIComponent(layanan)}%0A` +
+                `*Rute:* ${encodeURIComponent(asal + ' → ' + tujuan)}%0A` +
+                `*Tanggal:* ${encodeURIComponent(tanggal)}%0A` +
+                `*Penumpang:* ${encodeURIComponent(penumpang)}%0A` +
+                `*Lokasi jemput:* ${encodeURIComponent(lokasiJemput)}%0A` +
+                `*Catatan:* ${encodeURIComponent(catatan || '-')}`;
+
+            const urlWA = `https://wa.me/6283141106274?text=${pesan}`;
+
+            const summary = document.getElementById('confirmSummary');
+            summary.innerHTML = `
+                <div class="confirm-row"><span class="k">Nama</span><span class="v">${escapeHtml(nama)}</span></div>
+                <div class="confirm-row"><span class="k">WhatsApp</span><span class="v">${escapeHtml(whatsapp)}</span></div>
+                <div class="confirm-row"><span class="k">Layanan</span><span class="v">${escapeHtml(layanan)}</span></div>
+                <div class="confirm-row"><span class="k">Rute</span><span class="v">${escapeHtml(asal)} → ${escapeHtml(tujuan)}</span></div>
+                <div class="confirm-row"><span class="k">Tanggal</span><span class="v">${escapeHtml(tanggal)}</span></div>
+                <div class="confirm-row"><span class="k">Penumpang</span><span class="v">${escapeHtml(penumpang)} orang</span></div>
+                ${catatan ? `<div class="confirm-row"><span class="k">Catatan</span><span class="v">${escapeHtml(catatan)}</span></div>` : ''}
+            `;
+
+            document.getElementById('btnSendWA').href = urlWA;
+
+            document.getElementById('bookingForm').style.display = 'none';
+            document.getElementById('confirmPanel').classList.add('show');
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            return false;
+        }
+
+        function escapeHtml(str) {
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+
+        function editBooking() {
+            document.getElementById('confirmPanel').classList.remove('show');
+            document.getElementById('bookingForm').style.display = 'block';
+            window.scrollTo({ top: 300, behavior: 'smooth' });
+        }
+
+        const dateInput = document.getElementById('tanggal');
+        if (dateInput) {
+            const today = new Date().toISOString().split('T')[0];
+            dateInput.setAttribute('min', today);
+        }
+
+        window.addEventListener('load', bindRealtimeValidation);
+
+        (function () {
+            function initLainnya(selectId, inputId) {
+                const select = document.getElementById(selectId);
+                const input = document.getElementById(inputId);
+                if (!select || !input) return;
+
+                const optLainnya = select.querySelector('option[value="Lainnya"]');
+
+                function tampilkan() {
+                    input.style.display = 'block';
+                    input.required = true;
+                }
+                function sembunyikan() {
+                    input.style.display = 'none';
+                    input.required = false;
+                    input.value = '';
+                    if (optLainnya) optLainnya.value = 'Lainnya';
+                }
+
+                select.addEventListener('change', function () {
+                    if (select.selectedOptions[0] === optLainnya) {
+                        tampilkan();
+                        input.focus();
+                    } else {
+                        sembunyikan();
+                    }
+                });
+
+                input.addEventListener('input', function () {
+                    if (optLainnya && select.selectedOptions[0] === optLainnya) {
+                        optLainnya.value = input.value.trim() || 'Lainnya';
+                    }
+                });
+            }
+
+            initLainnya('asal', 'asalLainnya');
+            initLainnya('tujuan', 'tujuanLainnya');
+        })();
+
+        (function () {
+            const hamburger = document.getElementById('hamburger');
+            const drawer = document.getElementById('mobileDrawer');
+            const overlay = document.getElementById('drawerOverlay');
+            const drawerClose = document.getElementById('drawerClose');
+            if (!hamburger || !drawer || !overlay) return;
+
+            function openDrawer() {
+                drawer.classList.add('open'); overlay.classList.add('open');
+                hamburger.classList.add('active');
+                hamburger.setAttribute('aria-expanded', 'true');
+                drawer.setAttribute('aria-hidden', 'false');
+                document.body.classList.add('drawer-open');
+            }
+            function closeDrawer() {
+                drawer.classList.remove('open'); overlay.classList.remove('open');
+                hamburger.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
+                drawer.setAttribute('aria-hidden', 'true');
+                document.body.classList.remove('drawer-open');
+            }
+            hamburger.addEventListener('click', function (e) {
+                e.stopPropagation();
+                drawer.classList.contains('open') ? closeDrawer() : openDrawer();
+            });
+            if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
+            overlay.addEventListener('click', closeDrawer);
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && drawer.classList.contains('open')) closeDrawer();
+            });
+            window.addEventListener('resize', function () {
+                if (window.innerWidth > 900 && drawer.classList.contains('open')) closeDrawer();
+            });
+            const submenuTriggers = drawer.querySelectorAll('.drawer-menu-item[data-submenu]');
+            submenuTriggers.forEach(function (trigger) {
+                trigger.addEventListener('click', function () {
+                    const targetId = trigger.getAttribute('data-submenu');
+                    const targetSubmenu = document.getElementById(targetId);
+                    if (!targetSubmenu) return;
+                    const isOpen = trigger.classList.contains('open');
+                    submenuTriggers.forEach(t => t.classList.remove('open'));
+                    drawer.querySelectorAll('.drawer-submenu').forEach(sm => sm.classList.remove('open'));
+                    if (!isOpen) {
+                        trigger.classList.add('open');
+                        targetSubmenu.classList.add('open');
+                    }
+                });
+            });
+            drawer.querySelectorAll('a').forEach(function (link) {
+                link.addEventListener('click', closeDrawer);
+            });
+        })();
+    </script>
+</body>
+</html>
